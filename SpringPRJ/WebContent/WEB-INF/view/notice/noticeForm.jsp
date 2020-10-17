@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<% 
+String user_name = (String) request.getSession().getAttribute("user_name");
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -759,6 +763,9 @@
 	<!-- tawk chat JS
 		============================================ -->
 	<script src="/js/tawk-chat.js"></script>
+	<script>
+	alert("<%=user_name%>");
+	</script>
 </body>
 
 </html>

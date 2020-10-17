@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import poly.dto.BoardDTO;
 import poly.dto.NoticeDTO;
@@ -31,9 +32,12 @@ public class NoticeController {
 	private NoticeService noticeService;
 	
 	@RequestMapping(value = "/notice/noticeList")
-	public String noticeList(ModelMap model) throws Exception {
+	public String noticeList(ModelMap model,HttpServletRequest request) throws Exception {
 		log.info(this.getClass().getName() + " noticeList start");
-		
+		HttpSession session = request.getSession();
+		String name = "admin12";
+		session.setAttribute("user_name", name);
+		 
 		List<NoticeDTO> rList = noticeService.getNoticeList();
 		
 		if (rList == null) {
@@ -44,14 +48,19 @@ public class NoticeController {
 
 		rList = null;
 		
+		
 		log.info("noticeList end");
 		
 		return "/notice/noticeList";
 	}
 	
 	@RequestMapping(value = "/notice/noticeForm")
-	public String noticeForm() {
+	public String noticeForm(HttpServletRequest request,HttpSession session, RedirectAttributes redirect) {
 		log.info(this.getClass().getName() + " noticeForm start");
+		String user_name =(String) session.getAttribute("user_name");
+		if(!user_name.equals("admin")) {
+			return "redirect:/index.do";
+		}
 		
 		return "/notice/noticeForm";
 	}

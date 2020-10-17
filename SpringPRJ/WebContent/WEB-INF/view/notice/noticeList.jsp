@@ -3,6 +3,7 @@
 <%@page import="java.util.List"%>
 <%
 	List<NoticeDTO> rList = (List<NoticeDTO>)request.getAttribute("rList");
+	String user_name = (String) request.getSession().getAttribute("user_name");
 %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -613,6 +614,11 @@
 										<h2>공지사항</h2>
 									</div>
 								</div>
+								<% if (user_name.equals("admin")) { %>
+									
+								
+								<input type="button" value="등록">
+								<% }%>
 							</div>
 							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-3">
 								<div class="breadcomb-report">
