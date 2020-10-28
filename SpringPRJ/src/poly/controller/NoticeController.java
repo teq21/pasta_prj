@@ -55,11 +55,18 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value = "/notice/noticeForm")
-	public String noticeForm(HttpServletRequest request,HttpSession session, RedirectAttributes redirect) {
+	public String noticeForm(HttpServletRequest request,HttpSession session, RedirectAttributes redirect, ModelMap model) {
 		log.info(this.getClass().getName() + " noticeForm start");
 		String user_name =(String) session.getAttribute("user_name");
 		if(!user_name.equals("admin")) {
-			return "redirect:/index.do";
+			
+			String msg = "It's not appropriate approach. You are not an administer.";
+			String url = "/index.do";
+					
+			model.addAttribute("msg", msg);
+			model.addAttribute("url", url);
+			
+			return "/redirect";
 		}
 		
 		return "/notice/noticeForm";

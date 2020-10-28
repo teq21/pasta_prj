@@ -646,9 +646,7 @@
                                     	<th>순번</th>
                                         <th>제목</th>
                                         <th>등록자</th>
-                                        
                                         <th>등록일</th>
-                                       
                                     </tr>
                                 </thead>
                                 <tbody>
