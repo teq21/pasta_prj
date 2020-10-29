@@ -79,7 +79,7 @@ public class StudyController {
 		int res = studyService.doStudyForm(pDTO);
 		
 		String msg;
-		String url = "/study/studyList";
+		String url = "/study/studyList.do";
 		
 		if(res>0) {
 			msg = "게시글 등록 성공";
@@ -103,13 +103,13 @@ public class StudyController {
 		
 		log.info("pDTO set 성공");
 		
-		StudyDTO rDTO = studyService.getStudyDetail();
+		StudyDTO rDTO = studyService.getStudyDetail(pDTO);
 		
 		log.info("rDTO 탑재 성공");
 		
 		if(rDTO==null) {
 			model.addAttribute("msg", "존재하지 않는 게시물 입니다.");
-			model.addAttribute("url", "/notice/noticeList.do");
+			model.addAttribute("url", "/study/studyList.do");
 			return "/redirect";
 		}
 		

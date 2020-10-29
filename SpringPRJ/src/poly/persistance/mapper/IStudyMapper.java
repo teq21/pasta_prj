@@ -10,5 +10,7 @@ public interface IStudyMapper {
 
 	List<StudyDTO> getStudyList() throws Exception;
 
-	int doStudyForm();
+	int doStudyForm(StudyDTO pDTO);
+
+	StudyDTO getStudyDetail(StudyDTO pDTO);
 }

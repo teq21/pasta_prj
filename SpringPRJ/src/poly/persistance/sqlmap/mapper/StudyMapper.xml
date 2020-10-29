@@ -23,4 +23,16 @@ INSERT INTO STUDY_INFO(
 )
 </insert>
 
+<select id="getStudyDetail" parameterType="StudyDTO" resultType="StudyDTO">
+SELECT
+	POST_NO,
+	POST_TITLE,
+	POST_CONTENT,
+	REG_ID
+FROM
+	STUDY_INFO
+WHERE
+	POST_NO = #{post_no}
+</select>
+
 </mapper>

@@ -663,8 +663,6 @@ String user_name = (String) request.getSession().getAttribute("user_name");
 									<button type="submit" class="btn btn-default btn-sm waves-effect">
 										<i class="notika-icon notika-next"></i> 제출
 									</button>
-									
-
 								</div>
 							</div>
 						</div>

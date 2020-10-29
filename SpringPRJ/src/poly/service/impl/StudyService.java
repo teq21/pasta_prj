@@ -26,15 +26,14 @@ public class StudyService implements IStudyService {
 
 	@Override
 	public int doStudyForm(StudyDTO pDTO) {
-		// TODO Auto-generated method stub
-		return studyMapper.doStudyForm();
+		
+		return studyMapper.doStudyForm(pDTO);
 	}
 
 	@Override
 	public StudyDTO getStudyDetail(StudyDTO pDTO) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return studyMapper.getStudyDetail(pDTO);
 	}
-
 	
 }

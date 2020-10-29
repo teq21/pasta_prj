@@ -1,9 +1,9 @@
-<%@page import="poly.dto.NoticeDTO"%>
+<%@page import="poly.dto.StudyDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="static poly.util.CmmUtil.nvl"%>
 <%
-	NoticeDTO rDTO = (NoticeDTO) request.getAttribute("rDTO");
+	StudyDTO rDTO = (StudyDTO)request.getAttribute("rDTO");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -15,7 +15,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- favicon
 		============================================ -->
-<link rel="shortcut icon" type="image/x-icon" href="../img/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
 <!-- Google Fonts
 		============================================ -->
 <link
@@ -51,7 +51,7 @@
 	href="/css/jvectormap/jquery-jvectormap-2.0.3.css">
 <!-- Notika icon CSS
 		============================================ -->
-<link rel="stylesheet" href="../css/notika-custom-icon.css">
+<link rel="stylesheet" href="/css/notika-custom-icon.css">
 <!-- wave CSS
 		============================================ -->
 <link rel="stylesheet" href="/css/wave/waves.min.css">
@@ -85,7 +85,7 @@
 .right { position: absolute; bottom: 10px; right: 20px;}
 
 .right1 {
-	margin-left: 15px;
+	margin-left: 20px;
 }
 
 .tooltips-inner {
@@ -304,6 +304,7 @@
 						<hr>
 						<div class="tooltips-ctn">
 							<h3>제목</h3>
+							<span><%=nvl(rDTO.getPost_title())%></span>
 						</div>
 						<hr>
 						<div style="text-algin:center;">
@@ -314,8 +315,8 @@
 							<hr>
 							<div class="tooltips-ctn">
 							<h3>내용</h3>
-							<div style="height: 400px; border:1px solid darkgray;">
-							내용입니다
+							<div style="height: 350px; border:1px solid darkgray;">
+							<%=nvl(rDTO.getPost_content())%>
 							</div>
 						    </div>
 							<div class="tooltips-static tooltips-cvn">
