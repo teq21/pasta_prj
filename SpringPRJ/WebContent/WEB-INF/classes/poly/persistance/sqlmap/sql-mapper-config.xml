@@ -11,7 +11,7 @@
 		<typeAlias type="poly.dto.UserDTO" alias="UserDTO" />
 		<typeAlias type="poly.dto.MailDTO" alias="MailDTO" />
 		<typeAlias type="poly.dto.UserInfoDTO" alias="UserInfoDTO" />
-		<typeAlias type="poly.dto.ServiceDTO" alias="ServiceDTO" />
+		<typeAlias type="poly.dto.StudyDTO" alias="StudyDTO" />
 		<!-- <typeAlias type="poly.dto.새로만든 자바파일DTO" alias="짧게 사용할 단축 이름DTO" /> -->
 	</typeAliases>
 </configuration>

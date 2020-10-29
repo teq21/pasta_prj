@@ -1,13 +1,10 @@
-<%@ page import="poly.dto.StudyDTO"%>
-<%@page import="static poly.util.CmmUtil.nvl"%>
-<%@page import="java.util.List"%>
-<%
-	List<StudyDTO> rList = (List<StudyDTO>) request.getAttribute("rList");
-	String user_name = (String) request.getSession().getAttribute("user_name");
-%>
-
+<%@page import="poly.dto.NoticeDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="static poly.util.CmmUtil.nvl"%>
+<%
+	NoticeDTO rDTO = (NoticeDTO) request.getAttribute("rDTO");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -69,7 +66,7 @@
 <link rel="stylesheet" href="/css/responsive.css">
 <!-- modernizr JS
 		============================================ -->
-<script src="js/vendor/modernizr-2.8.3.min.js"></script>
+<script src="/js/vendor/modernizr-2.8.3.min.js"></script>
 
 <style>
 .invoice-wrap {
@@ -85,16 +82,14 @@
 	margin-left: 24px;
 }
 
-.right {
-	float: right;
-}
+.right { position: absolute; bottom: 10px; right: 20px;}
 
 .right1 {
 	margin-left: 15px;
 }
 
 .tooltips-inner {
-	height: 994px;
+	height: 1140px;
 }
 </style>
 </head>
@@ -280,7 +275,6 @@
 		</div>
 	</div>
 	<!-- Main Menu area End-->
-	<!-- Main Menu area End-->
 	<!-- Breadcomb area Start-->
 	<div class="breadcomb-area">
 		<div class="container">
@@ -289,7 +283,7 @@
 					<div class="breadcomb-list">
 						<div class="row">
 							<div style="text-align: center";>
-								<font size="6"><strong>학 습 게 시 판</strong></font>
+								<font size="6"><strong>학 습 하 기</strong></font>
 							</div>
 						</div>
 					</div>
@@ -304,130 +298,130 @@
 			<div class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="tooltips-inner">
-						<div class="normal-table-list">
-							<div class="bsc-tbl">
-								<table class="table table-sc-ex">
-									<thead>
-										<tr>
-											<th>순번</th>
-											<th>제목</th>
-											<th>등록자</th>
-											<th>등록일</th>
-										</tr>
-									</thead>
-									<tbody>
-										<%
-											for (StudyDTO e : rList) {
-										%>
-										<tr>
-											<td><%=nvl(e.getPost_no())%></td>
-											<td><a
-												href="/study/studyDetail.do?no=<%=e.getPost_no()%>"><%=nvl(e.getPost_title())%></a></td>
-											<td><%=nvl(e.getReg_id())%></td>
-											<td><%=nvl(e.getReg_dt())%></td>
-										</tr>
-										<%
-											}
-										%>
-									</tbody>
-								</table>
+						<div class="tooltips-hd tooltips-hdn">
+							<span class="right">작성일자</span>
+						</div>
+						<hr>
+						<div class="tooltips-ctn">
+							<h3>제목</h3>
+						</div>
+						<hr>
+						<div style="text-algin:center;">
+							<div >
+								<iframe width="1100" height="500">
+								</iframe>
+							</div>
+							<hr>
+							<div class="tooltips-ctn">
+							<h3>내용</h3>
+							<div style="height: 400px; border:1px solid darkgray;">
+							내용입니다
+							</div>
+						    </div>
+							<div class="tooltips-static tooltips-cvn">
+								<div class="stc-tlt-hd">
+									<div class="right">
+										<button class="btn btn-default btn-icon-notika waves-effect">수정</button>
+										<span class="right1"><button
+												class="btn btn-default btn-icon-notika waves-effect">삭제</button></span>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	</div>
-	</div>
-	</div>
-	</div>
-
-	<div class="stc-tlt-hd">
-		<div class="right">
-			<button type="button" onclick="location.href='/study/studyForm.do'" class="btn btn-default btn-icon-notika waves-effect">글쓰기</button>
-		</div>
-	</div>
-
-	<!-- Tooltips area End-->
-	<!-- Start Footer area-->
-	<div class="footer-copyright-area">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-					<div class="footer-copy-right">
-						<p>
-							Copyright Â© 2018 . All rights reserved. Template by <a
-								href="https://colorlib.com">Colorlib</a>.
-						</p>
+		<!-- Tooltips area End-->
+		<!-- Start Footer area-->
+		<div class="footer-copyright-area">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<div class="footer-copy-right">
+							<p>
+								Copyright Â© 2018 . All rights reserved. Template by <a
+									href="https://colorlib.com">Colorlib</a>.
+							</p>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<!-- End Footer area-->
-	<!-- jquery
+		<!-- End Footer area-->
+		<!-- jquery
 		============================================ -->
-	<script src="/js/vendor/jquery-1.12.4.min.js"></script>
-	<!-- bootstrap JS
+		<script src="/js/vendor/jquery-1.12.4.min.js"></script>
+		<!-- bootstrap JS
 		============================================ -->
-	<script src="/js/bootstrap.min.js"></script>
-	<!-- wow JS
+		<script src="/js/bootstrap.min.js"></script>
+		<!-- wow JS
 		============================================ -->
-	<script src="/js/wow.min.js"></script>
-	<!-- price-slider JS
+		<script src="/js/wow.min.js"></script>
+		<!-- price-slider JS
 		============================================ -->
-	<script src="/js/jquery-price-slider.js"></script>
-	<!-- owl.carousel JS
+		<script src="/js/jquery-price-slider.js"></script>
+		<!-- owl.carousel JS
 		============================================ -->
-	<script src="/js/owl.carousel.min.js"></script>
-	<!-- scrollUp JS
+		<script src="/js/owl.carousel.min.js"></script>
+		<!-- scrollUp JS
 		============================================ -->
-	<script src="/js/jquery.scrollUp.min.js"></script>
-	<!-- meanmenu JS
+		<script src="/js/jquery.scrollUp.min.js"></script>
+		<!-- meanmenu JS
 		============================================ -->
-	<script src="/js/meanmenu/jquery.meanmenu.js"></script>
-	<!-- counterup JS
+		<script src="/js/meanmenu/jquery.meanmenu.js"></script>
+		<!-- counterup JS
 		============================================ -->
-	<script src="/js/counterup/jquery.counterup.min.js"></script>
-	<script src="/js/counterup/waypoints.min.js"></script>
-	<script src="/js/counterup/counterup-active.js"></script>
-	<!-- mCustomScrollbar JS
+		<script src="/js/counterup/jquery.counterup.min.js"></script>
+		<script src="/js/counterup/waypoints.min.js"></script>
+		<script src="/js/counterup/counterup-active.js"></script>
+		<!-- mCustomScrollbar JS
 		============================================ -->
-	<script src="/js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
-	<!-- sparkline JS
+		<script src="/js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+		<!-- sparkline JS
 		============================================ -->
-	<script src="/js/sparkline/jquery.sparkline.min.js"></script>
-	<script src="/js/sparkline/sparkline-active.js"></script>
-	<!-- flot JS
+		<script src="/js/sparkline/jquery.sparkline.min.js"></script>
+		<script src="/js/sparkline/sparkline-active.js"></script>
+		<!-- flot JS
 		============================================ -->
-	<script src="/js/flot/jquery.flot.js"></script>
-	<script src="/js/flot/jquery.flot.resize.js"></script>
-	<script src="/js/flot/flot-active.js"></script>
-	<!-- knob JS
+		<script src="/js/flot/jquery.flot.js"></script>
+		<script src="/js/flot/jquery.flot.resize.js"></script>
+		<script src="/js/flot/flot-active.js"></script>
+		<!-- knob JS
 		============================================ -->
-	<script src="/js/knob/jquery.knob.js"></script>
-	<script src="/js/knob/jquery.appear.js"></script>
-	<script src="/js/knob/knob-active.js"></script>
-	<!--  wave JS
+		<script src="/js/knob/jquery.knob.js"></script>
+		<script src="/js/knob/jquery.appear.js"></script>
+		<script src="/js/knob/knob-active.js"></script>
+		<!-- summernote JS
 		============================================ -->
-	<script src="/js/wave/waves.min.js"></script>
-	<script src="/js/wave/wave-active.js"></script>
-	<!--  Chat JS
+		<script src="/js/summernote/summernote-updated.min.js"></script>
+		<script src="/js/summernote/summernote-active.js"></script>
+		<!-- dropzone JS
 		============================================ -->
-	<script src="/js/chat/jquery.chat.js"></script>
-	<!--  todo JS
+		<script src="/js/dropzone/dropzone.js"></script>
+		<!--  wave JS
 		============================================ -->
-	<script src="/js/todo/jquery.todo.js"></script>
-	<!-- plugins JS
+		<script src="/js/wave/waves.min.js"></script>
+		<script src="/js/wave/wave-active.js"></script>
+		<!-- icheck JS
 		============================================ -->
-	<script src="/js/plugins.js"></script>
-	<!-- main JS
+		<script src="/js/icheck/icheck.min.js"></script>
+		<script src="/js/icheck/icheck-active.js"></script>
+		<!--  Chat JS
 		============================================ -->
-	<script src="/js/main.js"></script>
-	<!-- tawk chat JS
+		<script src="/js/chat/jquery.chat.js"></script>
+		<!--  todo JS
 		============================================ -->
-	<script src="/js/tawk-chat.js"></script>
+		<script src="/js/todo/jquery.todo.js"></script>
+		<!-- plugins JS
+		============================================ -->
+		<script src="js/plugins.js"></script>
+		<!-- main JS
+		============================================ -->
+		<script src="js/main.js"></script>
+		<!-- tawk chat JS
+		============================================ -->
+		<script src="js/tawk-chat.js"></script>
 </body>
 
 </html>

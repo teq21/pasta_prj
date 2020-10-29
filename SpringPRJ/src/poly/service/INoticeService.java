@@ -2,7 +2,7 @@ package poly.service;
 
 import java.util.List;
 
-import poly.dto.BoardDTO;
+
 import poly.dto.NoticeDTO;
 
 //Controller는 인터페이스에 있는 함수 명을 기반으로 실행 됨

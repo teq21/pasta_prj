@@ -3,7 +3,24 @@
 <mapper namespace="poly.persistance.mapper.IStudyMapper">
 
 <select id="getStudyList" parameterType="StudyDTO" resultType="StudyDTO">
-SELECT * FROM NOTICE_INFO
+SELECT * FROM STUDY_INFO
 </select>
+
+<insert id="doStudyForm" parameterType="StudyDTO">
+INSERT INTO STUDY_INFO(
+	
+	REG_ID,
+	POST_TITLE,
+	POST_CONTENT
+	
+	
+)VALUES(
+	
+	#{reg_id},
+	#{post_title},
+	#{post_content}
+	
+)
+</insert>
 
 </mapper>
