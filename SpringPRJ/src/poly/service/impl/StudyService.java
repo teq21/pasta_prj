@@ -35,5 +35,12 @@ public class StudyService implements IStudyService {
 		
 		return studyMapper.getStudyDetail(pDTO);
 	}
+
+
+	@Override
+	public int updateStudyDetail(StudyDTO pDTO) {
+		
+		return studyMapper.updateStudyDetail(pDTO);
+	}
 	
 }

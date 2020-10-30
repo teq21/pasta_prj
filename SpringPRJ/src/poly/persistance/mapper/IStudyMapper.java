@@ -13,4 +13,6 @@ public interface IStudyMapper {
 	int doStudyForm(StudyDTO pDTO);
 
 	StudyDTO getStudyDetail(StudyDTO pDTO);
+
+	int updateStudyDetail(StudyDTO pDTO);
 }

@@ -121,9 +121,9 @@ public class NoticeController {
 		log.info(this.getClass().getName() + " noticeDetail start");
 		
 		String post_no = request.getParameter("no");
+		
 		NoticeDTO pDTO = new NoticeDTO();
 		pDTO.setPost_no(post_no);
-		
 		log.info("pDTO set 성공");
 		
 		NoticeDTO rDTO = noticeService.getNoticeDetail(pDTO);

@@ -322,7 +322,7 @@
 							<div class="tooltips-static tooltips-cvn">
 								<div class="stc-tlt-hd">
 									<div class="right">
-										<button class="btn btn-default btn-icon-notika waves-effect">수정</button>
+										<button onclick="location.href='/study/editStudyDetail.do?no=<%=rDTO.getPost_no()%>'" class="btn btn-default btn-icon-notika waves-effect">수정</button>
 										<span class="right1"><button
 												class="btn btn-default btn-icon-notika waves-effect">삭제</button></span>
 									</div>

@@ -35,4 +35,13 @@ WHERE
 	POST_NO = #{post_no}
 </select>
 
+<update id="updateStudyDetail" parameterType="studyDTO">
+UPDATE STUDY_INFO
+SET
+	POST_TITLE = #{post_title},
+	POST_CONTENT = #{post_content}
+WHERE
+	POST_NO = #{post_no}
+</update>
+
 </mapper>
