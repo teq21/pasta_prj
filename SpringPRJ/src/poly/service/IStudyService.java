@@ -13,5 +13,7 @@ public interface IStudyService {
 	StudyDTO getStudyDetail(StudyDTO pDTO);
 	
 	int updateStudyDetail(StudyDTO pDTO);
+	
+	int deleteStudyDetail(StudyDTO pDTO);
 
 }

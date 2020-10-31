@@ -177,4 +177,38 @@ public class StudyController {
 		return "/redirect";
 	}
 	
+	@RequestMapping(value = "/study/doDeleteStudyDetail")
+	public String doDelteStudyDetail(HttpServletRequest request, ModelMap model) {
+		log.info(this.getClass().getName() + " doDelteStudyDetail start");
+		
+		String post_no = request.getParameter("no");
+		
+		StudyDTO pDTO = new StudyDTO();
+		
+		pDTO.setPost_no(post_no);
+		
+		int res = studyService.deleteStudyDetail(pDTO);
+		
+		String msg;
+		String url = "/study/studyList.do";
+		
+		if(res>0) {
+			msg = "게시물 삭제에 성공 하였습니다.";
+		} else {
+			msg = "게시물 삭제에 실패 하였습니다.";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "/redirect";
+	}
+	
+	@RequestMapping(value = "/test")
+	public String test() {
+		log.info(this.getClass().getName() + " test");
+
+		return "/test";
+	}
+	
 }
