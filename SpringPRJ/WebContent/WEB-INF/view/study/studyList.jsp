@@ -1,4 +1,4 @@
-<%@ page import="poly.dto.StudyDTO"%>
+<%@page import="poly.dto.StudyDTO"%>
 <%@page import="static poly.util.CmmUtil.nvl"%>
 <%@page import="java.util.List"%>
 <%

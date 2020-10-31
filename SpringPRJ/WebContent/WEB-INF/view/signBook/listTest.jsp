@@ -1,3 +1,9 @@
+<%@page import="poly.dto.SignBookDTO"%>
+<%@page import="static poly.util.CmmUtil.nvl"%>
+<%@page import="java.util.List"%>
+<%
+	List<SignBookDTO> rList = (List<SignBookDTO>) request.getAttribute("rList");
+%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -293,14 +299,18 @@
     <!-- Animateions area start-->
     <div class="animation-area">
         <div class="container">
-            <div class="row">                <!--  1번 -->
+       
+            <div class="row">
+            <%
+				for (SignBookDTO e : rList) {
+			%>
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                     <div class="animation-single-int sm-res-mg-t-30">
                         <div style="border:1px solid #00c292; text-align:center; font-size: 25px; margin:0 0 10px;">
-                                                       안녕하세요
+                        <%=nvl(e.getPost_title()) %>
                         </div>
                         <div class="animation-img mg-b-15">
-                           <img class="animate-two" src="/images/signBook/003-smile-1.png" alt="cannot load the image." />
+                           <img class="animate-two" src="<%=nvl(e.getThumb_nail()) %>" alt="cannot load the image." />
                         </div>
                         <div class="animation-action">
                             <div class="row" style="margin:auto;">
@@ -310,154 +320,17 @@
                             </div>
                         </div>
                     </div>
+                    <br>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                    <div class="animation-single-int sm-res-mg-t-30">
-                       <div style="border:1px solid #00c292; text-align:center; font-size: 25px; margin:0 0 10px;">
-                                                       수화명 2
-                        </div>
-                        <div class="animation-img mg-b-15">
-                           <img class="animate-two" src="/images/signBook/003-smile-1.png" alt="cannot load the image." />
-                        </div>
-                        <div class="animation-action">
-                            <div class="row" style="margin:auto;" >
-                                    <div class="animation-btn">
-                                        <button class="btn ant-nk-st">학습하기</button>
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                    <div class="animation-single-int sm-res-mg-t-30">
-                        <div style="border:1px solid #00c292; text-align:center; font-size: 25px; margin:0 0 10px;">
-                                                       수화명 3
-                        </div>
-                        <div class="animation-img mg-b-15">
-                            <img class="animate-three" src="/images/signBook/003-smile-1.png" alt="cannot load the image." />
-                        </div>
-                        <div class="animation-action">
-                            <div class="row" style="margin:auto;">
-                                    <div class="animation-btn">
-                                        <button class="btn ant-nk-st">학습하기</button>
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
+                
+            <%
+				}
+			%>    
             </div>
-            <div class="row">               <!--  2번 -->
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                    <div class="animation-single-int mg-t-30">
-                        <div style="border:1px solid #00c292; text-align:center; font-size: 25px; margin:0 0 10px;">
-                                                       수화명 4
-                        </div>
-                        <div class="animation-img mg-b-15">
-                            <img class="animate-four" src="/images/signBook/003-smile-1.png" alt="cannot load the image." />
-                        </div>
-                        <div class="animation-action">
-                            <div class="row" style="margin:auto;">
-                                    <div class="animation-btn">
-                                        <button class="btn ant-nk-st">학습하기</button>
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 mg-t-30">
-                    <div class="animation-single-int">
-                        <div style="border:1px solid #00c292; text-align:center; font-size: 25px; margin:0 0 10px;">
-                                                       수화명 5
-                        </div>
-                        <div class="animation-img mg-b-15">
-                            <img class="animate-five" src="/images/signBook/003-smile-1.png" alt="cannot load the image." />
-                        </div>
-                        <div class="animation-action">
-                            <div class="row" style="margin:auto;">
-                                    <div class="animation-btn">
-                                        <button class="btn ant-nk-st">학습하기</button>
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 mg-t-30">
-                    <div class="animation-single-int">
-                        <div style="border:1px solid #00c292; text-align:center; font-size: 25px; margin:0 0 10px;">
-                                                       수화명 6
-                        </div>
-                        <div class="animation-img mg-b-15">
-                            <img class="animate-six" src="/images/signBook/003-smile-1.png" alt="cannot load the image." />
-                        </div>
-                        <div class="animation-action">
-                            <div class="row" style="margin:auto;">
-                                    <div class="animation-btn">
-                                        <button class="btn ant-nk-st">학습하기</button>
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">       <!--  3번 -->
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                    <div class="animation-single-int mg-t-30">
-                        <div style="border:1px solid #00c292; text-align:center; font-size: 25px; margin:0 0 10px;">
-                                                       수화명 7
-                        </div>
-                        <div class="animation-img mg-b-15">
-                            <img class="animate-seven" src="/images/signBook/003-smile-1.png" alt="cannot load the image." />
-                        </div>
-                        <div class="animation-action">
-                            <div class="row" style="margin:auto;">
-                                    <div class="animation-btn">
-                                        <button class="btn ant-nk-st ">학습하기</button>
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 mg-t-30">
-                    <div class="animation-single-int">
-                        <div style="border:1px solid #00c292; text-align:center; font-size: 25px; margin:0 0 10px;">
-                                                       수화명 8
-                        </div>
-                        <div class="animation-img mg-b-15">
-                            <img class="animate-eight" src="/images/signBook/003-smile-1.png" alt="cannot load the image." />
-                        </div>
-                        <div class="animation-action">
-                            <div class="row" style="margin:auto;">
-                                    <div class="animation-btn">
-                                        <button class="btn ant-nk-st">학습하기</button>
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 mg-t-30">
-                    <div class="animation-single-int">
-                        <div style="border:1px solid #00c292; text-align:center; font-size: 25px; margin:0 0 10px;">
-                                                       수화명 9
-                        </div>
-                        <div class="animation-img mg-b-15">
-                            <img class="animate-nine" src="/images/signBook/003-smile-1.png" alt="cannot load the image." />
-                        </div>
-                        <div class="animation-action">
-                            <div class="row" style="margin:auto;">
-                                    <div class="animation-btn">
-                                        <button class="btn ant-nk-st">학습하기</button>
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <br>
-            <div class=tooltips-inner style="float: right"> <!--  페이징 만들기 -->
             
-             
-
-            </div>
+            <br>
+       
         </div>
     </div>
     <!-- Animateions area End-->
