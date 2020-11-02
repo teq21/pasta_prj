@@ -7,4 +7,6 @@ import poly.dto.SignBookDTO;
 public interface ISignBookService {
 
 	List<SignBookDTO> getSignBookList() throws Exception;
+	
+	SignBookDTO getSignBookDetail(SignBookDTO pDTO);
 }

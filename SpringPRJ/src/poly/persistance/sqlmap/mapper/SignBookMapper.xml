@@ -6,4 +6,17 @@
 SELECT * FROM SIGNBOOK_INFO
 </select>
 
+<select id="getSignBookDetail" parameterType="SignBookDTO" resultType="SignBookDTO">
+SELECT
+	POST_NO,
+	POST_TITLE,
+	IMG_ONE,
+	IMG_TWO,
+	SIGN_INFO,
+	SIGN_INST
+FROM SIGNBOOK_INFO
+WHERE POST_NO = #{post_no}
+	
+</select>
+
 </mapper>

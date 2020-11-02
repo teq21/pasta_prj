@@ -315,7 +315,8 @@
                         <div class="animation-action">
                             <div class="row" style="margin:auto;">
                                     <div class="animation-btn">
-                                        <button class="btn ant-nk-st">학습하기</button>
+                                    	<input type="text" value="<%=nvl(e.getPost_no()) %>" hidden="hidden">
+                                        <button onclick="location.href='/signBook/signBookDetail.do?no=<%=e.getPost_no()%>'" class="btn ant-nk-st">학습하기</button>
                                     </div>
                             </div>
                         </div>

@@ -1,5 +1,10 @@
+<%@ page import="poly.dto.SignBookDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="static poly.util.CmmUtil.nvl"%>
+<%
+	SignBookDTO rDTO = (SignBookDTO)request.getAttribute("rDTO");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -319,20 +324,30 @@
 					<div class="tooltips-inner" style="width:1140px; height:700px;">
 					<div style="padding: 25px 90px 25px 90px; height:650px;">
 					
-                      <div class="le"> <!--  왼쪽은 img  -->
-                      <img src="/images/signBook/023-blush.png" alt="cannot load the image." style="width: 100%; height: 100%;">
+                      <div class="le" style="text-align: center;"> <!--  왼쪽은 img  -->
+                      <img src="<%=nvl(rDTO.getImg_one()) %>" onerror="this.style.display='none'" alt='' style="width: 60%; height: 50%;">
+                      <br>
+                      <br>
+                      <img src="<%=nvl(rDTO.getImg_two()) %>" onerror="this.style.display='none'" alt=''  style="width: 60%; height: 50%;">
                       </div> 
                       
-                      <div class="ri"> <!--  오른쪽은  설명  -->
+                      <div class="ri" style="text-align: center;"> <!--  오른쪽은  설명  -->
                       	
-                      		<h1>POST_TITLE HERE</h1>
+                      		<h1><%=nvl(rDTO.getPost_title()) %></h1>
+                      		<br>
+                      		<br>
+                      		<br>
+                      		<h3>한국어 정보</h3>
+                      		<br>
+                      		<%=nvl(rDTO.getSign_info()) %>
+                      		<br>
+                      		<br>
                       		<br>
                       		<br>
                       		<br>
                       		<h3>수형 설명</h3>
                       		<br>
-                      		POST_CONTENT HERE
-                      	
+                      		<%=nvl(rDTO.getSign_inst()) %>
                       </div>    
                       	
                     </div>

@@ -12,9 +12,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import poly.dto.SignBookDTO;
-import poly.dto.StudyDTO;
 import poly.service.impl.SignBookService;
-import poly.service.impl.StudyService;
 
 @Controller
 public class SignBookController {
@@ -28,7 +26,7 @@ public class SignBookController {
 	public String signBookList(ModelMap model, HttpServletRequest request) throws Exception {
 		log.info(this.getClass().getName() + " signBookList start");
 		
-		List<SignBookDTO> rList = signBookService.getSignBookList();
+		List<SignBookDTO> rList= signBookService.getSignBookList();
 		
 		if (rList == null) {
 			rList = new ArrayList<>();
@@ -45,8 +43,23 @@ public class SignBookController {
 
 	
 	@RequestMapping(value = "/signBook/signBookDetail")
-	public String signBookDetail() {
+	public String signBookDetail(HttpServletRequest request, ModelMap model) {
 		log.info(this.getClass().getName() + " signBookDetail start");
+		
+		String post_no = request.getParameter("no");
+		log.info(post_no);
+		SignBookDTO pDTO = new SignBookDTO();
+		pDTO.setPost_no(post_no);
+		
+		SignBookDTO rDTO = signBookService.getSignBookDetail(pDTO);
+		log.info(rDTO);
+		if(rDTO==null) {
+			model.addAttribute("msg", "존재하지 않는 게시물 입니다.");
+			model.addAttribute("url", "/signBook/signBookList.do");
+			return "/redirect";
+		}
+		
+		model.addAttribute("rDTO", rDTO);
 
 		return "/signBook/signBookDetail";
 	}

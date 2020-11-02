@@ -16,12 +16,25 @@ public class SignBookService implements ISignBookService {
 	@Resource(name = "SignBookMapper")
 	ISignBookMapper signBookMapper;
 
+	
+
+	@Override
+	public SignBookDTO getSignBookDetail(SignBookDTO pDTO) {
+		
+		return signBookMapper.getSignBookDetail(pDTO);
+	}
+
+
+
 	@Override
 	public List<SignBookDTO> getSignBookList() throws Exception {
 		
 		return signBookMapper.getSignBookList();
 	}
 
+
+
+	
 	
 	
 }

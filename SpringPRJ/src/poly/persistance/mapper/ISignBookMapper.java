@@ -10,5 +10,7 @@ public interface ISignBookMapper {
 
 	List<SignBookDTO> getSignBookList();
 
+	SignBookDTO getSignBookDetail(SignBookDTO pDTO);
+
 	
 }
