@@ -25,15 +25,8 @@ public class SignBookController {
 	private SignBookService signBookService;
 	
 	@RequestMapping(value = "/signBook/signBookList")
-	public String signBookList() {
+	public String signBookList(ModelMap model, HttpServletRequest request) throws Exception {
 		log.info(this.getClass().getName() + " signBookList start");
-
-		return "/signBook/signBookList";
-	}
-	
-	@RequestMapping(value = "/signBook/listTest")
-	public String listTest(ModelMap model, HttpServletRequest request) throws Exception {
-		log.info(this.getClass().getName() + " listTest start");
 		
 		List<SignBookDTO> rList = signBookService.getSignBookList();
 		
@@ -45,10 +38,17 @@ public class SignBookController {
 
 		rList = null;
 
-		log.info("listTest end");
+		log.info("signBookList end");
 
-		return "/signBook/listTest";
+		return "/signBook/signBookList";
 	}
 
+	
+	@RequestMapping(value = "/signBook/signBookDetail")
+	public String signBookDetail() {
+		log.info(this.getClass().getName() + " signBookDetail start");
+
+		return "/signBook/signBookDetail";
+	}
 	
 }

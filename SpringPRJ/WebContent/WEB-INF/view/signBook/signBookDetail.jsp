@@ -1,9 +1,3 @@
-<%@page import="poly.dto.SignBookDTO"%>
-<%@page import="static poly.util.CmmUtil.nvl"%>
-<%@page import="java.util.List"%>
-<%
-	List<SignBookDTO> rList = (List<SignBookDTO>) request.getAttribute("rList");
-%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -86,10 +80,31 @@
 .right1 {
 	margin-left: 15px;
 }
+.tooltips-inner{
+    background: url("/images/signBook/background-book.png");
+    background-size: 100% 100%;
+    background-position: center;
+    opacity: 1;
+}
+
+.le {
+        width: 460px;
+        height: 600px;
+        float: left;
+        word-break:break-all;
+}
+.ri {
+        width: 460px;
+        height: 600px;
+        float: right;
+        word-break:break-all;
+        padding: 20px;
+}
 
 </style>
 
 </head>
+
 
 <body>
     <!--[if lt IE 8]>
@@ -285,7 +300,7 @@
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="breadcomb-list">
 						<div class="row">
-							<div style="text-align: center" ;="">
+							<div style="text-align: center;">
 								<font size="6"><strong>수 화 사 전</strong></font>
 							</div>
 						</div>
@@ -296,44 +311,37 @@
 	</div>
 	<!-- Breadcomb area End-->
 	
-    <!-- Animateions area start-->
-    <div class="animation-area">
-        <div class="container">
-       
-            <div class="row">
-            <%
-				for (SignBookDTO e : rList) {
-			%>
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                    <div class="animation-single-int sm-res-mg-t-30">
-                        <div style="border:1px solid #00c292; text-align:center; font-size: 25px; margin:0 0 10px;">
-                        <%=nvl(e.getPost_title()) %>
-                        </div>
-                        <div class="animation-img mg-b-15">
-                           <img class="animate-two" src="<%=nvl(e.getThumb_nail()) %>" alt="cannot load the image." />
-                        </div>
-                        <div class="animation-action">
-                            <div class="row" style="margin:auto;">
-                                    <div class="animation-btn">
-                                        <button class="btn ant-nk-st">학습하기</button>
-                                    </div>
-                            </div>
-                        </div>
+    <!-- signBook area start-->
+    <div class="tooltips-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="tooltips-inner" style="width:1140px; height:700px;">
+					<div style="padding: 25px 90px 25px 90px; height:650px;">
+					
+                      <div class="le"> <!--  왼쪽은 img  -->
+                      <img src="/images/signBook/023-blush.png" alt="cannot load the image." style="width: 100%; height: 100%;">
+                      </div> 
+                      
+                      <div class="ri"> <!--  오른쪽은  설명  -->
+                      	
+                      		<h1>POST_TITLE HERE</h1>
+                      		<br>
+                      		<br>
+                      		<br>
+                      		<h3>수형 설명</h3>
+                      		<br>
+                      		POST_CONTENT HERE
+                      	
+                      </div>    
+                      	
                     </div>
-                    <br>
-                </div>
-                
-                
-            <%
-				}
-			%>    
-            </div>
-            
-            <br>
-       
-        </div>
-    </div>
-    <!-- Animateions area End-->
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+    <!-- signBook area End-->
     
     <!-- Start Footer area-->
     <div class="footer-copyright-area">
@@ -392,22 +400,25 @@
     <script src="/js/knob/jquery.knob.js"></script>
     <script src="/js/knob/jquery.appear.js"></script>
     <script src="/js/knob/knob-active.js"></script>
-    <!--  wave JS
-		============================================ -->
-    <script src="/js/wave/waves.min.js"></script>
-    <script src="/js/wave/wave-active.js"></script>
-    <!--  animation JS
-		============================================ -->
-    <script src="/js/animation/animation-active.js"></script>
     <!--  Chat JS
 		============================================ -->
     <script src="/js/chat/jquery.chat.js"></script>
     <!--  todo JS
 		============================================ -->
     <script src="/js/todo/jquery.todo.js"></script>
+	<!--  wave JS
+		============================================ -->
+    <script src="/js/wave/waves.min.js"></script>
+    <script src="/js/wave/wave-active.js"></script>
     <!-- plugins JS
 		============================================ -->
     <script src="/js/plugins.js"></script>
+    <!-- Data Maps JS
+		============================================ -->
+    <script src="/js/data-map/d3.min.js"></script>
+    <script src="/js/data-map/topojson.js"></script>
+    <script src="/js/data-map/datamaps.all.min.js"></script>
+    <script src="/js/data-map/data-maps-active.js"></script>
     <!-- main JS
 		============================================ -->
     <script src="/js/main.js"></script>
@@ -416,6 +427,4 @@
     <script src="/js/tawk-chat.js"></script>
 </body>
 
-
-</body>
 </html>
