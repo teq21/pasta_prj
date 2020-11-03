@@ -14,9 +14,7 @@ import poly.service.ISignBookService;
 public class SignBookService implements ISignBookService {
 
 	@Resource(name = "SignBookMapper")
-	ISignBookMapper signBookMapper;
-
-	
+	private ISignBookMapper signBookMapper;
 
 	@Override
 	public SignBookDTO getSignBookDetail(SignBookDTO pDTO) {
@@ -24,12 +22,16 @@ public class SignBookService implements ISignBookService {
 		return signBookMapper.getSignBookDetail(pDTO);
 	}
 
+	@Override
+	public int getSignBookListCnt() throws Exception {
 
+		return signBookMapper.getSignBookListCnt();
+	}
 
 	@Override
-	public List<SignBookDTO> getSignBookList() throws Exception {
+	public List<SignBookDTO> getSignBookList(int start, int end) throws Exception {
 		
-		return signBookMapper.getSignBookList();
+		return signBookMapper.getSignBookList(start, end);
 	}
 
 

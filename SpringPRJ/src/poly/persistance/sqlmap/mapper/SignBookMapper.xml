@@ -2,21 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="poly.persistance.mapper.ISignBookMapper">
 
-<select id="getSignBookList" parameterType="SignBookDTO" resultType="SignBookDTO">
-SELECT * FROM SIGNBOOK_INFO
-</select>
+	<!-- 리스트 불러오는 쿼리  : 페이징과 연계-->
+	<select id="getSignBookList" resultType="SignBookDTO">
+		SELECT * FROM SIGNBOOK_INFO
+		WHERE POST_NO BETWEEN #{start} AND #{end}
+	</select>
 
-<select id="getSignBookDetail" parameterType="SignBookDTO" resultType="SignBookDTO">
-SELECT
-	POST_NO,
-	POST_TITLE,
-	IMG_ONE,
-	IMG_TWO,
-	SIGN_INFO,
-	SIGN_INST
-FROM SIGNBOOK_INFO
-WHERE POST_NO = #{post_no}
+	<!-- 상세보기 가져오는 쿼리 -->
+	<select id="getSignBookDetail" parameterType="SignBookDTO"
+		resultType="SignBookDTO">
+		SELECT
+		POST_NO,
+		POST_TITLE,
+		IMG_ONE,
+		IMG_TWO,
+		SIGN_INFO,
+		SIGN_INST
+		FROM SIGNBOOK_INFO
+		WHERE POST_NO = #{post_no}
+
+	</select>
+
+	<!-- 페이징 쿼리 -->
+	<select id="getSignBookListCnt" resultType="Integer">
+		SELECT COUNT(1) FROM SIGNBOOK_INFO
+	</select>
 	
-</select>
-
 </mapper>

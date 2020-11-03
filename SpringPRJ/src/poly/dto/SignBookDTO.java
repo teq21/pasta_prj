@@ -1,10 +1,5 @@
 package poly.dto;
 
-import java.util.List;
-import java.util.Map;
-
-import poly.util.Criteria;
-
 public class SignBookDTO {
 
 	private String post_no;
