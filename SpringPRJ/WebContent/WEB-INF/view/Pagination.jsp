@@ -1,6 +1,11 @@
 <%@page import="poly.util.Pagination"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<style> 
+	.pagination>li>a, .pagination>li>span { border-radius: 50% !important;margin: 0 5px;}
+	a.page_link{color:black;}
+	</style>
 <div class="text-center">
 	<ul class="pagination">
 		<%

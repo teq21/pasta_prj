@@ -35,7 +35,7 @@ public class TmController {
 		/*
 		 * if(result!=null) { log.info("객체담기실패"); }
 		 */
-		return "/index";
+		return "/index1";
 		
 		}
 		

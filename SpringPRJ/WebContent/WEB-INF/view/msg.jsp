@@ -1,7 +1,7 @@
+<%@page import="poly.dto.UserInfoDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@page import="poly.util.CmmUtil" %>
-    <%@page import="poly.dto.UserInfoDTO" %>
     
     <%
    

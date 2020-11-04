@@ -348,6 +348,9 @@
                       		<h3>수형 설명</h3>
                       		<br>
                       		<%=nvl(rDTO.getSign_inst()) %>
+                      		<br>
+                      		<br>
+                      		<button onclick="location.href='/signBook/signBookList.do'" class="btn ant-nk-st">돌아가기</button>
                       </div>    
                       	
                     </div>

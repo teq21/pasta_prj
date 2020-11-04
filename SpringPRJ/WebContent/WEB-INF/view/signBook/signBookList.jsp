@@ -96,6 +96,59 @@
 .right1 {
 	margin-left: 15px;
 }
+
+//
+flip card css
+	/* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
+	/* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
+	
+	
+	
+.flip-card {
+	background-color: transparent;
+	width: 300px;
+	height: 200px;
+	border: 1px solid #f1f1f1;
+	perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+
+/* This container is needed to position the front and back side */
+.flip-card-inner {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	transition: transform 0.8s;
+	transform-style: preserve-3d;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-card:hover .flip-card-inner {
+	transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.flip-card-front, .flip-card-back {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	-webkit-backface-visibility: hidden; /* Safari */
+	backface-visibility: hidden;
+}
+
+/* Style the front side (fallback if image is missing) */
+.flip-card-front {
+	background-color: #bbb;
+	color: black;
+}
+
+/* Style the back side */
+.flip-card-back {
+	background-color: dodgerblue;
+	color: black;
+	transform: rotateY(180deg);
+}
+a.page_link{color:black;}
 </style>
 
 </head>
@@ -312,27 +365,26 @@
 					for (SignBookDTO e : rList) {
 				%>
 				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-					<div class="animation-single-int sm-res-mg-t-30">
-						<div
-							style="border: 1px solid #00c292; text-align: center; font-size: 25px; margin: 0 0 10px;">
-							<%=nvl(e.getPost_title())%>
-						</div>
-						<div class="animation-img mg-b-15">
-							<img class="animate-two" src="<%=nvl(e.getThumb_nail())%>"
-								alt="cannot load the image." />
-						</div>
-						<div class="animation-action">
-							<div class="row" style="margin: auto;">
-								<div class="animation-btn">
-									<input type="text" value="<%=nvl(e.getPost_no())%>"
-										hidden="hidden">
-									<button
-										onclick="location.href='/signBook/signBookDetail.do?no=<%=e.getPost_no()%>'"
-										class="btn ant-nk-st">학습하기</button>
+					<div style="width: 357px; height: 320px; background-color: white;">
+							<div class="flip-card">
+								<div class="flip-card-inner">
+									<div class="flip-card-front">
+										<img src="<%=nvl(e.getThumb_nail())%>" alt="Avatar"
+											style="width: 290px; height: 250px;">
+											<br><br>
+											 <div><h2><%=nvl(e.getPost_title())%></h2></div>
+									</div>
+									<div class="flip-card-back">
+										<h1><%=nvl(e.getPost_title())%></h1>
+										<p>Architect & Engineer</p>
+										<p>We love that guy</p>
+									</div>
+                                   
 								</div>
 							</div>
-						</div>
+							
 					</div>
+					<br>
 					<br>
 				</div>
 
@@ -343,7 +395,7 @@
 			<%
 				if (rList.size() == 0) {
 			%>
-			<div>- 게시물이 없습니다 -</div>
+			<div>게시물이 없습니다.</div>
 			<%
 				} else {
 			%>
@@ -352,7 +404,7 @@
 				}
 			%>
 			<br>
-			
+
 
 		</div>
 	</div>

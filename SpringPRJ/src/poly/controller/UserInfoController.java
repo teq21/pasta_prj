@@ -33,11 +33,11 @@ public class UserInfoController {
 
 	// 회원가입 화면으로 이동
 
-	@RequestMapping(value = "/user/login_register")
+	@RequestMapping(value = "/userInfo/login_register")
 	public String login_register() {
 		log.info(this.getClass().getName() + "login_register ok!");
 
-		return "/user/login_register";
+		return "/userInfo/login_register";
 	}
 
 	@RequestMapping(value = "/msg")
@@ -55,21 +55,20 @@ public class UserInfoController {
 		// 값확인
 		System.out.println("중복 확인 요청된 이메일 : " + userEmail);
 
-		
-		  Map<String, Object> datavalue = new HashMap<>();
-			
-			//서비스 측에 요청
-			int result = userInfoService.isDuplicateEmail(userEmail);
-			
-			if(result == 0) {
-				System.out.println("이메일 사용 가능!");
-				datavalue.put("confirm", "OK");
-			} else {
-				System.out.println("이메일 중복! 사용 불가!");
-				datavalue.put("confirm", "NO");
-			}
-			
-			return datavalue;
+		Map<String, Object> datavalue = new HashMap<>();
+
+		// 서비스 측에 요청
+		int result = userInfoService.isDuplicateEmail(userEmail);
+
+		if (result == 0) {
+			System.out.println("이메일 사용 가능!");
+			datavalue.put("confirm", "OK");
+		} else {
+			System.out.println("이메일 중복! 사용 불가!");
+			datavalue.put("confirm", "NO");
+		}
+
+		return datavalue;
 	}
 
 	// 회원가입 로직 처리
@@ -145,35 +144,56 @@ public class UserInfoController {
 		}
 		return "redirect:/msg.do";
 	}
-    //로그인을 위한 입력화면으로 이동
-	@RequestMapping(value="user/loginform")
+
+	// 로그인을 위한 입력화면으로 이동
+	@RequestMapping(value = "/user/login")
 	public String loginForm() {
-		log.info(this.getClass().getName()+".user/loginfrom OK!");
-		return null;
+		log.info(this.getClass().getName() + ".user/loginfrom OK!");
+
+		return "/user/login_register";
 	}
-	//로그인 처리및 결과 알려주는 화면으로 이동
-	@RequestMapping(value="user/getUserLoginCheck")
-	public String getUserLoginCheck (HttpSession session,HttpServletRequest request,HttpServletResponse response,ModelMap model) throws Exception{
-		log.info(this.getClass().getName()+ ".getuserlogincheck start!");
+//로그인처리 함수
+	@PostMapping(value = "/user/getUserLoginCheck")
+	public @ResponseBody Map<Object, Object> getUserLoginCheck(@RequestBody UserInfoDTO userInfo,HttpSession session, HttpServletRequest request) throws Exception {
+		log.info(this.getClass().getName() + ".getuserlogincheck start123456!");
+		log.info("request userInfo >>>>>"+userInfo.toString());
+		// 로그인 처리결과를 저장할변수 (로그인성공:1, 아이디, 비밀번호 불일치로인한 실패:0, 시스템에러:2)
+		int res = 0;
+		session = request.getSession();
 		
-		//로그인 처리결과를 저장할변수 (로그인성공:1, 아이디, 비밀번호 불일치로인한 실패:0, 시스템에러:2)
-		int res=0;
-		
-		//웹(회원정보 입력화면)에서 받는 정보를 저장할 변수
-		UserInfoDTO pDTO=null;
-		
+		// 웹(회원정보 입력화면)에서 받는 정보를 저장할 변수
+		UserInfoDTO pDTO = null;
+		Map<Object, Object> resultMap = new HashMap<Object, Object>();
 		try {
-			//회원정보 입력화면에서 받는 정보를 String 변수에 저장시작!
-			//무조건 웹으로 받은 정보는 DTO에 저장하기위해 임시로 STring 변수에 저장함
+			// 회원정보 입력화면에서 받는 정보를 String 변수에 저장시작!
+			// 무조건 웹으로 받은 정보는 DTO에 저장하기위해 임시로 STring 변수에 저장함
+
+			String email = CmmUtil.nvl(userInfo.getEmail());// 이메일
+			String password = CmmUtil.nvl(userInfo.getPassword());// 비밀번호
 			
-			String user_id= CmmUtil.nvl(request.getParameter("email"));//이메일
-			String password=CmmUtil.nvl(request.getParameter("password"));//비밀번호
 			
+			pDTO = new UserInfoDTO();
+
+			pDTO.setEmail(email);
+
+			pDTO.setPassword(EncryptUtil.encHashSHA256(password));
+
+			res = userInfoService.getUserLoginCheck(pDTO);
+
+			if (res == 1) {
+				session.setAttribute("ss_email", email);
+			}
+
+		} catch (Exception e) {
+			res = 2;
+			e.printStackTrace();
+		} finally {
+
+			resultMap.put("loginResult", res);
+			pDTO = null;
 		}
-		
-		
-		return null;
-		
-		
+
+		return resultMap;
+
 	}
 }
