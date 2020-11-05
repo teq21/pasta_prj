@@ -17,6 +17,10 @@ public interface UserInfoMapper {
 	
 	//로그인을 위해 아이디와 비밀번호가 일치하는지 확인하ㅏ기
 	UserInfoDTO getUserLoginCheck(UserInfoDTO pDTO) throws Exception;
+
+	UserInfoDTO findPassword(UserInfoDTO uDTO) throws Exception;
+
+	void setFindPassword(String email, String state) throws Exception;
 	
 	
 }

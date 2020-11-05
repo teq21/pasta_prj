@@ -378,6 +378,7 @@ a.page_link{color:black;}
 										<h1><%=nvl(e.getPost_title())%></h1>
 										<p>Architect & Engineer</p>
 										<p>We love that guy</p>
+										
 									</div>
                                    
 								</div>

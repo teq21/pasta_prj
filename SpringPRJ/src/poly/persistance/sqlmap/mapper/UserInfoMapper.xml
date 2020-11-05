@@ -39,4 +39,14 @@
 		WHERE EMAIL=#{email}
 		and PASSWORD=#{password}
 	</select>
+	
+	<select id="findPass
+	word" resultType="UserInfoDTO">
+	SELECT PASSWORD, EMAIL FROM USER_INFO WHERE EMAIL = #{email}
+	</select>
+	
+	<update id="setFindPassword" parameterType="String">
+	UPDATE USER_INFO
+	SET FIND_PW = #{1} WHERE ID = #{0}
+	</update>
 </mapper>

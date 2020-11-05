@@ -86,7 +86,7 @@
 															} else {
 																$('#email_msg')
 																		.html(
-																				'<i style="color: red" >사용 불가능한 이메일 입니다.</i>');
+																				'<i style="color: red" > 이미 사용중인 이메일 입니다.</i>');
 															}
 														},
 														error : function(error) {

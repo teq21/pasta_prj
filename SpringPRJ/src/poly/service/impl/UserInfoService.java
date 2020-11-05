@@ -1,5 +1,9 @@
 package poly.service.impl;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -8,6 +12,7 @@ import poly.dto.UserInfoDTO;
 import poly.persistance.mapper.UserInfoMapper;
 import poly.service.IUserInfoService;
 import poly.util.CmmUtil;
+import poly.util.EncryptUtil;
 
 @Service("UserInfoService")
 public class UserInfoService implements IUserInfoService {
@@ -94,6 +99,42 @@ public class UserInfoService implements IUserInfoService {
 		
 		
 		return res;
+	}
+
+
+	@Override
+	public UserInfoDTO findPassword(UserInfoDTO uDTO) throws Exception {
+		
+		UserInfoDTO rDTO = new UserInfoDTO();
+		
+		rDTO = userInfoMapper.findPassword(uDTO);
+		
+		if(rDTO == null) {
+			return null;
+		} else {
+			String email = uDTO.getEmail();
+			
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmm");
+			Date d = new Date();
+			Calendar c = Calendar.getInstance();
+			c.setTime(d);
+			c.add(Calendar.MINUTE, 20);
+			
+			String timeLimit = sdf.format(c.getTime());
+			
+			//암호화된 비밀번호와 이메일을 섞어서 해시코드 생성
+			String accessCode = EncryptUtil.encAES128CBC(timeLimit + "," + email);
+			
+			// 앞서 만든 코드를 데이터베이스 암호란에 업데이트
+			rDTO.setPassword(accessCode);
+			
+			// 암호 찾기 활성화
+			
+			userInfoMapper.setFindPassword(email, "1");
+			return rDTO;
+			
+			
+		}
 	}
 
 
