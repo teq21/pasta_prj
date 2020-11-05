@@ -5,7 +5,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import poly.dto.UserInfoDTO;
-import poly.persistance.mapper.IUserInfoMapper;
+import poly.persistance.mapper.UserInfoMapper;
 import poly.service.IUserInfoService;
 import poly.util.CmmUtil;
 
@@ -13,7 +13,7 @@ import poly.util.CmmUtil;
 public class UserInfoService implements IUserInfoService {
 	
 	@Resource(name = "UserInfoMapper")
-	private IUserInfoMapper userInfoMapper;
+	private UserInfoMapper userInfoMapper;
 	
 
 	@Override

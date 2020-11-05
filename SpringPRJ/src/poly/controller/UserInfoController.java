@@ -33,18 +33,11 @@ public class UserInfoController {
 
 	// 회원가입 화면으로 이동
 
-	@RequestMapping(value = "/userInfo/login_register")
+	@RequestMapping(value = "/user/login_register")
 	public String login_register() {
 		log.info(this.getClass().getName() + "login_register ok!");
 
-		return "/userInfo/login_register";
-	}
-
-	@RequestMapping(value = "/msg")
-	public String msg() {
-		log.info(this.getClass().getName() + "login_register ok!");
-
-		return "/msg";
+		return "/user/login_register";
 	}
 
 	// 이메일 중복확인 체크 요청
@@ -86,9 +79,9 @@ public class UserInfoController {
 			// 휘원정보 입력화면에서 받는 정보를 string 변수에 저장시갖
 			// 무조건 웹으로 받는 정보는 dto에 저장하기위해 임시로 string 변수에 저장함
 
-			String EMAIL = CmmUtil.nvl(request.getParameter("EMAIL"));
-			String USER_NAME = CmmUtil.nvl(request.getParameter("USER_NAME"));
-			String PASSWORD = CmmUtil.nvl(request.getParameter("PASSWORD"));
+			String EMAIL = CmmUtil.nvl(request.getParameter("email"));
+			String USER_NAME = CmmUtil.nvl(request.getParameter("user_name"));
+			String PASSWORD = CmmUtil.nvl(request.getParameter("password"));
 
 			// 회원 정보 입력화면ㅅ에서 STRING 변수에 저장끝
 			// 무조건 웹으로 받은 정보는 DTO에 저장하기위해 임시로 STRING 변수에 저장함
@@ -105,7 +98,7 @@ public class UserInfoController {
 			pDTO = new UserInfoDTO();
 
 			// 민감 정보인 이메일은 AES128-CBC로 암호화함
-			pDTO.setEmail(EncryptUtil.encAES128CBC(EMAIL));
+			pDTO.setEmail(EMAIL);
 			pDTO.setUser_name(USER_NAME);
 			// 비밀번호는 절대로 복호화 되지않도록 해시 알고르지음으로 암호화함
 			pDTO.setPassword(EncryptUtil.encHashSHA256(PASSWORD));
@@ -144,15 +137,8 @@ public class UserInfoController {
 		}
 		return "redirect:/msg.do";
 	}
-
-	// 로그인을 위한 입력화면으로 이동
-	@RequestMapping(value = "/user/login")
-	public String loginForm() {
-		log.info(this.getClass().getName() + ".user/loginfrom OK!");
-
-		return "/user/login_register";
-	}
-//로그인처리 함수
+	
+	//로그인처리 함수
 	@PostMapping(value = "/user/getUserLoginCheck")
 	public @ResponseBody Map<Object, Object> getUserLoginCheck(@RequestBody UserInfoDTO userInfo,HttpSession session, HttpServletRequest request) throws Exception {
 		log.info(this.getClass().getName() + ".getuserlogincheck start123456!");
@@ -164,6 +150,7 @@ public class UserInfoController {
 		// 웹(회원정보 입력화면)에서 받는 정보를 저장할 변수
 		UserInfoDTO pDTO = null;
 		Map<Object, Object> resultMap = new HashMap<Object, Object>();
+		
 		try {
 			// 회원정보 입력화면에서 받는 정보를 String 변수에 저장시작!
 			// 무조건 웹으로 받은 정보는 DTO에 저장하기위해 임시로 STring 변수에 저장함

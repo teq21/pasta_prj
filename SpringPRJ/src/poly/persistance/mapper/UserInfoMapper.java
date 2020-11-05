@@ -4,7 +4,7 @@ import config.Mapper;
 import poly.dto.UserInfoDTO;
 
 @Mapper("UserInfoMapper")
-public interface IUserInfoMapper {
+public interface UserInfoMapper {
 	
 	//회원가입하기 (회원정보 등록하기)
 	int insertUserInfo(UserInfoDTO pDTO) throws Exception;

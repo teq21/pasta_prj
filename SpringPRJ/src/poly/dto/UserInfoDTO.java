@@ -11,7 +11,6 @@ public class UserInfoDTO {
 	private String chg_id;
 	private String chg_dt;
 	private String sign_use;
-	
 	private String sign_level;
 	//회원가입시, 중복가입을 방지 위해 사용할변수
 	//DB 를 조회해서 외원이 존해하면 y값을 반환함
