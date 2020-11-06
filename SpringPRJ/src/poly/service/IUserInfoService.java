@@ -13,4 +13,8 @@ public interface IUserInfoService {
 	int getUserLoginCheck(UserInfoDTO pDTO) throws Exception;
 	
 	UserInfoDTO findPassword(UserInfoDTO uDTO) throws Exception;
+	
+	int verifyPwFind(String email) throws Exception;
+	
+	int findPasswordProc(String email, String password) throws Exception;
 }

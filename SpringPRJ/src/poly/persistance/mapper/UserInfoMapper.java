@@ -21,6 +21,10 @@ public interface UserInfoMapper {
 	UserInfoDTO findPassword(UserInfoDTO uDTO) throws Exception;
 
 	void setFindPassword(String email, String state) throws Exception;
+
+	int verifyPwFind(String email) throws Exception;
+
+	int findPasswordProc(String email, String password);
 	
 	
 }

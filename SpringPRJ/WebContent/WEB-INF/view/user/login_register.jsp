@@ -310,7 +310,7 @@
 						<span class="input-group-addon nk-ic-st-pro"><i
 							class="notika-icon notika-support"></i></span>
 						<div class="nk-int-st">
-							<input type="text" name="email" id="find_email"
+							<input type="text" name="email2" id="find_email"
 								class="form-control" placeholder="이메일을 입력 하십시오.">
 						</div>
 					</div>
@@ -318,7 +318,7 @@
 						<span class="input-group-addon nk-ic-st-pro"><i
 							class="notika-icon notika-support"></i></span>
 						<div class="nk-int-st">
-							<input type="text" name="user_name" id="find_user_name"
+							<input type="text" name="user_name2" id="find_user_name"
 								class="form-control" placeholder="이름을 입력 하십시오.">
 						</div>
 					</div>

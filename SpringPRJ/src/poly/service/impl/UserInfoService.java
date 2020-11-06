@@ -129,12 +129,27 @@ public class UserInfoService implements IUserInfoService {
 			rDTO.setPassword(accessCode);
 			
 			// 암호 찾기 활성화
-			
 			userInfoMapper.setFindPassword(email, "1");
 			return rDTO;
 			
 			
 		}
+	}
+
+
+	@Override
+	public int verifyPwFind(String email) throws Exception {
+
+		return userInfoMapper.verifyPwFind(email);
+	}
+
+
+	@Override
+	public int findPasswordProc(String email, String password) throws Exception {
+
+		password = EncryptUtil.encHashSHA256(password);
+		
+		return userInfoMapper.findPasswordProc(email, password);
 	}
 
 

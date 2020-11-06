@@ -50,7 +50,7 @@
 							</div>
 							<div class="card-block text-xs-center">
 								<button type="button" class="btn btn-primary btn-lg"
-									onclick="location.href='/user/UserLogin.do'">처음으로</button>
+									onclick="location.href='/user/login_register.do'">처음으로</button>
 							</div>
 							<div class="card-footer">
 

@@ -202,7 +202,7 @@ public class UserInfoController {
 		log.info(this.getClass().getName() + ".findPasswordProc start");
 		
 		UserInfoDTO uDTO = new UserInfoDTO();
-		uDTO.setEmail(request.getParameter("email"));
+		uDTO.setEmail(request.getParameter("email2"));
 		
 		// uDTO에 암호화된 패스워드와 이메일 불러옴
 		uDTO = userInfoService.findPassword(uDTO);
@@ -319,5 +319,74 @@ public class UserInfoController {
 		
 		
 		return "/user/findPasswordForm";
+	}
+	
+	@RequestMapping(value = "/user/findPasswordFormProc")
+	public String findPasswordFormProc(HttpServletRequest request, ModelMap model) throws Exception {
+		String code = request.getParameter("code").replaceAll(" ", "+");
+		String password = request.getParameter("password");
+		String email = null;
+		
+		try {
+			String[] decoded = EncryptUtil.decAES128CBC(code).split(",");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmm");
+
+			Date d = sdf.parse(decoded[0]);
+			email = decoded[1];
+
+			Date now = new Date();
+
+			if (d.compareTo(now) > 0) {
+				model.addAttribute("msg", "만료된 초기화 코드입니다.");
+				model.addAttribute("url", "/index.do");
+				return "/redirect";
+			}
+			
+			int res = 0;
+			try {
+				res = userInfoService.verifyPwFind(email);
+			} catch (Exception e) {
+				model.addAttribute("msg", "비정상적인 접근입니다.");
+				model.addAttribute("url", "/index.do");
+				return "/redirect";
+			}
+			
+			if(res==0) {
+				model.addAttribute("msg", "만료된 초기화 코드입니다.");
+				model.addAttribute("url", "/index.do");
+				return "/redirect";
+			}
+			
+			model.addAttribute("code", code);
+			
+			
+		} catch (Exception e) {
+			model.addAttribute("msg", "유효하지 않은 코드입니다.");
+			model.addAttribute("url", "/index.do");
+			return "/redirect";
+		}
+		
+		
+		
+		
+		int result;
+		// 히새 암호화된 암호를 찾아서 새 암호로 엎어씌움
+		result = userInfoService.findPasswordProc(email, password);
+		
+		model.addAttribute("title", "암호 초기화");
+		model.addAttribute("findType", "pwProc");
+		String msg;
+		String status;
+		if(result>0) {
+			msg = "암호 초기화에 성공하였습니다.";
+			status = "0";
+		}else {
+			msg = "암호 초기화에 실패하였습니다.";
+			status = "1";
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("status", status);
+		
+		return "/user/findResult";
 	}
 }
