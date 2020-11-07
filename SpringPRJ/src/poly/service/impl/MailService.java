@@ -25,7 +25,7 @@ public class MailService implements IMailService {
 
 	final String host = "smtp.naver.com"; // �꽕�씠踰꾩뿉�꽌 �젣怨듯븯�뒗 SMTP�꽌踰�
 	final String user = "sdfgx123@naver.com"; // 蹂몄씤 �꽕�씠踰� �븘�씠�뵒
-	final String password = "tuan948#$qp12";
+	final String password = "tune757$%wn34";
 
 	@Override
 	public int doSendMail(MailDTO pDTO) {
@@ -69,10 +69,10 @@ public class MailService implements IMailService {
 			Transport.send(message);
 		} catch (MessagingException e) {
 			res = 0; // 硫붿씪 諛쒖넚 �떎�뙣 0
-			log.info("[ERROR]" + this.getClass().getName() + ".doSnedMail :" + e);
+			log.info("[ERROR]" + this.getClass().getName() + ".doSendMail :" + e);
 		} catch (Exception e) {
 			res = 0; // 硫붿씪 諛쒖넚 �떎�뙣 0
-			log.info("[ERROR]" + this.getClass().getName() + ".doSnedMail :" + e);
+			log.info("[ERROR]" + this.getClass().getName() + ".doSendMail :" + e);
 		}
 
 		// 濡쒓렇 李띻린

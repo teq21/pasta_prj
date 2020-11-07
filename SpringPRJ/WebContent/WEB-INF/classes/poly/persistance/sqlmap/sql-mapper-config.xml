@@ -13,6 +13,8 @@
 		<typeAlias type="poly.dto.UserInfoDTO" alias="UserInfoDTO" />
 		<typeAlias type="poly.dto.StudyDTO" alias="StudyDTO" />
 		<typeAlias type="poly.dto.SignBookDTO" alias="SignBookDTO" />
+		<typeAlias type="poly.dto.VideoDTO" alias="VideoDTO" />
+		<typeAlias type="poly.dto.QuizDTO" alias="QuizDTO" />
 		<!-- <typeAlias type="poly.dto.새로만든 자바파일DTO" alias="짧게 사용할 단축 이름DTO" /> -->
 	</typeAliases>
 </configuration>
