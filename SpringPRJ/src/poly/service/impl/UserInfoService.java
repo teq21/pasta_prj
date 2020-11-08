@@ -6,6 +6,7 @@ import java.util.Date;
 
 import javax.annotation.Resource;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import poly.dto.UserInfoDTO;
@@ -16,6 +17,8 @@ import poly.util.EncryptUtil;
 
 @Service("UserInfoService")
 public class UserInfoService implements IUserInfoService {
+	
+	private Logger log = Logger.getLogger(this.getClass());
 	
 	@Resource(name = "UserInfoMapper")
 	private UserInfoMapper userInfoMapper;
@@ -107,13 +110,14 @@ public class UserInfoService implements IUserInfoService {
 		
 		UserInfoDTO rDTO = new UserInfoDTO();
 		
+		//이메일, 비밀번호, 회원 이름을 가져와 DTO로 반환함
 		rDTO = userInfoMapper.findPassword(uDTO);
 		
 		if(rDTO == null) {
 			return null;
 		} else {
-			String email = uDTO.getEmail();
 			
+			String email = uDTO.getEmail();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmm");
 			Date d = new Date();
 			Calendar c = Calendar.getInstance();
@@ -121,18 +125,16 @@ public class UserInfoService implements IUserInfoService {
 			c.add(Calendar.MINUTE, 20);
 			
 			String timeLimit = sdf.format(c.getTime());
+			log.info("timeLimit : " + timeLimit);
 			
 			//암호화된 비밀번호와 이메일을 섞어서 해시코드 생성
 			String accessCode = EncryptUtil.encAES128CBC(timeLimit + "," + email);
-			
+			log.info("access code : " + accessCode);
 			// 앞서 만든 코드를 데이터베이스 암호란에 업데이트
 			rDTO.setPassword(accessCode);
-			
 			// 암호 찾기 활성화
 			userInfoMapper.setFindPassword(email, "1");
 			return rDTO;
-			
-			
 		}
 	}
 

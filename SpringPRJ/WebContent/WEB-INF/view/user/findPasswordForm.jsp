@@ -44,7 +44,7 @@
 								<div class="card-block">
 									<form data-toggle="validator" role="form" name="recoverForm"
 										onsubmit="return validate();" class="form-horizontal form"
-										action="/user/RecoverPwFormProc.do" autocomplete="off"
+										action="/user/findPasswordFormProc.do" autocomplete="off"
 										method="post">
 										<fieldset
 											class="form-group position-relative has-icon-left has-feedback mb-0">

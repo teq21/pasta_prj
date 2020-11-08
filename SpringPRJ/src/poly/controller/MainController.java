@@ -40,7 +40,7 @@ public class MainController {
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String Index2() {
 		log.info(this.getClass());
-		return "/index1";
+		return "/index";
 	}
 
 	@RequestMapping(value = "mai", method = RequestMethod.GET)

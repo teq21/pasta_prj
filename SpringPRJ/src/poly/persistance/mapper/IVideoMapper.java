@@ -1,8 +1,11 @@
 package poly.persistance.mapper;
 
 import config.Mapper;
+import poly.dto.VideoDTO;
 
-@Mapper("IVideoMapper")
+@Mapper("VideoMapper")
 public interface IVideoMapper {
-	String  getvideo() throws Exception ;
+	
+	VideoDTO  getvideo(VideoDTO pDTO) throws Exception ;
+	
 }

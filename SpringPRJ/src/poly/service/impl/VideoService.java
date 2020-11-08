@@ -4,24 +4,27 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import poly.dto.VideoDTO;
 import poly.persistance.mapper.IVideoMapper;
 import poly.service.IVideoService;
 
 @Service("VideoService")
 public class VideoService implements IVideoService {
-	@Resource(name = "IVideoMapper")
+	@Resource(name = "VideoMapper")
 	private IVideoMapper videomapper;
-	
+
 	@Override
-	public String getvideo() throws Exception {
-		return videomapper.getvideo();
-		
-		
+	public VideoDTO getvideo(VideoDTO pDTO) throws Exception {
+	
+		return videomapper.getvideo(pDTO);
 	}
 	
 	
-	
-	
-	
-	
 }
+	
+
+	
+	
+	
+	
+

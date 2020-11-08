@@ -202,11 +202,12 @@ public class UserInfoController {
 		log.info(this.getClass().getName() + ".findPasswordProc start");
 		
 		UserInfoDTO uDTO = new UserInfoDTO();
+		
+		//login_register.jsp로부터 받아온 email로 초기화
 		uDTO.setEmail(request.getParameter("email2"));
 		
 		// uDTO에 암호화된 패스워드와 이메일 불러옴
 		uDTO = userInfoService.findPassword(uDTO);
-
 		
 		model.addAttribute("title", "암호 초기화");
 		model.addAttribute("findType", "pw");
@@ -252,7 +253,7 @@ public class UserInfoController {
 				}
 
 				String censoredEmail = censoredId + "@" + domain;
-				StringBuilder msg = new StringBuilder("아래 이메일로 초기화 링크를 보내드렸습니다:<br>");
+				StringBuilder msg = new StringBuilder("아래 이메일로 초기화 링크를 보내드렸습니다<br>");
 				msg.append(censoredEmail);
 				msg.append("<br>");
 				msg.append("암호 초기화 링크는 20분간 유효합니다.");
@@ -268,16 +269,21 @@ public class UserInfoController {
 	
 	@RequestMapping(value = "/user/findPasswordForm")
 	public String findPasswordForm(HttpServletRequest request, ModelMap model) throws Exception {
+		log.info(this.getClass().getName() + ".findPasswordForm start");
 		
 		String code = request.getParameter("code").replaceAll(" ", "+");
 		log.info("code : " + code);
 		try {
 			
-			String[] decoded = EncryptUtil.decAES128CBC(code).split(",");
+			
+			log.info("콤마 찍은 코드 code : " + code);
+			String decoded = EncryptUtil.decAES128CBC(code);
+			log.info(decoded);
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmm");
-
-			Date d = sdf.parse(decoded[0]);
-			String id = decoded[1];
+			
+			Date d = sdf.parse(decoded);
+			String id = decoded;
+			
 			Date now = new Date();
 			
 			log.info("link date : " + sdf.format(d));
@@ -389,4 +395,12 @@ public class UserInfoController {
 		
 		return "/user/findResult";
 	}
+	
+	@RequestMapping(value = "/user/myPage")
+	public String myPage() {
+		log.info(this.getClass().getName() + "myPage ok!");
+
+		return "/user/myPage";
+	}
+	
 }

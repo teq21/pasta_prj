@@ -8,8 +8,8 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
+import poly.dto.VideoDTO;
 import poly.service.impl.VideoService;
 @Controller
 public class TmController {
@@ -21,21 +21,31 @@ public class TmController {
 
 
 	//비디오가져오는 로직시작
-	@RequestMapping(value = "/model")
+	@RequestMapping(value ="/model")
 	public String getvideoes(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
 	
 		log.info(this.getClass().getName() + "model.do ok!");
+	     
+		VideoDTO pDTO=new VideoDTO();
+		VideoDTO rDTO=videoservice.getvideo(pDTO);
+		
+		
+		if(rDTO==null) {
+			rDTO=new VideoDTO();
+		}
+	     model.addAttribute("rDTO",rDTO);
+	     
+	     
+		
 	
-		
-		
-		String result= videoservice.getvideo();
-		log.info("result >>> "+result) ;
-		model.addAttribute("result", result);
-		 
 		/*
 		 * if(result!=null) { log.info("객체담기실패"); }
 		 */
-		return "/index1";
+		
+		
+
+		
+		return "/index2";
 		
 		}
 		
