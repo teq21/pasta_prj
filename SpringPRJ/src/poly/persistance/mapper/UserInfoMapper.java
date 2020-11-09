@@ -25,6 +25,8 @@ public interface UserInfoMapper {
 	int verifyPwFind(String email) throws Exception;
 
 	int findPasswordProc(String email, String password);
+
+	int verifyEmail(String email, String state);
 	
 	
 }

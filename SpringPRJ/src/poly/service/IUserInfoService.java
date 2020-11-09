@@ -17,4 +17,6 @@ public interface IUserInfoService {
 	int verifyPwFind(String email) throws Exception;
 	
 	int findPasswordProc(String email, String password) throws Exception;
+	
+	int verifyEmail(String email, String state) throws Exception;
 }

@@ -140,7 +140,7 @@ public class UserInfoController {
 				mDTO.setToMail(parameterEmail);
 				StringBuilder content = new StringBuilder();
 				content.append("아래 링크를 클릭하시면 이메일 인증이 완료됩니다.\n");
-				content.append("http://localhost:8080/user/VerifyEmail.do?code=");
+				content.append("http://localhost:8080/user/verifyEmail.do?code=");
 				String code = EncryptUtil.encAES128CBC(parameterEmail + ",1");
 				content.append(code);
 				
@@ -172,7 +172,7 @@ public class UserInfoController {
 
 			pDTO = null;
 		}
-		return "redirect:/msg.do";
+		return "/redirect";
 	}
 	
 	//로그인처리 함수
@@ -402,8 +402,49 @@ public class UserInfoController {
 	@RequestMapping(value = "/user/myPage")
 	public String myPage() {
 		log.info(this.getClass().getName() + "myPage ok!");
+		
+		
 
 		return "/user/myPage";
 	}
 	
+	@RequestMapping(value = "/user/verifyEmail")
+	public String verifyEmail(HttpServletRequest request, HttpServletResponse response, HttpSession session, ModelMap model)
+			throws Exception {
+		log.info(this.getClass().getName() + ".verifyEmail start");
+		String[] decoded;
+		try {
+		String code = request.getParameter("code").replaceAll(" ", "+");
+		decoded = EncryptUtil.decAES128CBC(code).split(",");
+		}catch(Exception e){
+			model.addAttribute("msg", "잘못된 링크입니다.");
+			model.addAttribute("url", "/user/login_register.do");
+			return "/redirect";
+		}
+		
+		int res = 0;
+		try {
+			//decoded[0] : email, decoded[1] : state 1
+			log.info("decoded[0] ENCODED: " + EncryptUtil.encAES128CBC(decoded[0]));
+			log.info("decoded[1] : " + decoded[1]);
+			res = userInfoService.verifyEmail(EncryptUtil.encAES128CBC(decoded[0]), decoded[1]);
+			
+		}catch(Exception e) {
+			log.info(e.toString());
+			model.addAttribute("msg", "비정상적인 접근입니다.");
+			model.addAttribute("url", "/user/login_register.do");
+			return "/redirect";
+		}
+		if(res>0) {
+			model.addAttribute("msg", "이메일 인증에 성공했습니다.");
+			model.addAttribute("url", "/user/login_register.do");
+		}else {
+			model.addAttribute("msg", "이메일 인증에 실패했습니다.");
+			model.addAttribute("url", "/user/login_register.do");
+		}
+
+		log.info(this.getClass().getName() + ".verifyEmail end");
+		return "/redirect";
+		
+	}
 }

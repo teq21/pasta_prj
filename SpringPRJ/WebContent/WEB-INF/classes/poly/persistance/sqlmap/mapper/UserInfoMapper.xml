@@ -9,7 +9,8 @@
 		USER_NAME,
 		PASSWORD,
 		PHONE,
-		HAVE_SIGN
+		HAVE_SIGN,
+		STATE
 		)
 		
 		values
@@ -18,7 +19,8 @@
 		#{user_name},
 		#{password},
 		#{phone},
-		#{have_sign}
+		#{have_sign},
+		1
 		)
 	</insert>
 
@@ -67,6 +69,17 @@
 		FIND_PW = 0
 	WHERE
 		EMAIL = #{0}
+	</update>
+	
+	<!-- 이메일 인증 완료 쿼리 -->
+	<update id="verifyEmail" parameterType="String">
+	UPDATE
+		USER_INFO
+	SET
+		STATE=0
+	WHERE
+		EMAIL=#{0}
+		AND STATE=1
 	</update>
 	
 </mapper>

@@ -159,6 +159,14 @@ public class UserInfoService implements IUserInfoService {
 	}
 
 
+	@Override
+	public int verifyEmail(String email, String state) throws Exception {
+
+		
+		return userInfoMapper.verifyEmail(email, state);
+	}
+
+
 
 
 }
