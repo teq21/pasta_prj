@@ -2,7 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="poly.persistance.mapper.IVideoMapper">
 	<select id="getvideo" parameterType="VideoDTO" resultType="VideoDTO">
-		select sign_name,path,tm_path from video_info where date=DATE_FORMAT(now(), '%d');
+		SELECT SIGN_NAME, PATH, TM_PATH
+		FROM VIDEO_INFO
+		WHERE DATE = DATE_FORMAT(now(), '%d')
+		<!--select sign_name,path,tm_path from video_info where date=DATE_FORMAT(now(), '%d');-->
 	</select>
 
 

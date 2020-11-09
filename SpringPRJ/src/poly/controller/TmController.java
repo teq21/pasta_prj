@@ -13,12 +13,11 @@ import poly.dto.VideoDTO;
 import poly.service.impl.VideoService;
 @Controller
 public class TmController {
+	
 	@Resource(name = "VideoService")
 	private VideoService videoservice;
+	
 	private Logger log = Logger.getLogger(this.getClass());
-	
-	
-
 
 	//비디오가져오는 로직시작
 	@RequestMapping(value ="/model")
@@ -28,7 +27,6 @@ public class TmController {
 	     
 		VideoDTO pDTO=new VideoDTO();
 		VideoDTO rDTO=videoservice.getvideo(pDTO);
-		
 		
 		if(rDTO==null) {
 			rDTO=new VideoDTO();
