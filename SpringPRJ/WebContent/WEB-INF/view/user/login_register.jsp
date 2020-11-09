@@ -154,23 +154,32 @@
 		var user_name = document.getElementById('user_name');
 		var password = document.getElementById('password');
 		if (email.value == "") {
-			alert("이메일을 입력하세요");
+			alert("이메일을 입력 하십시오.");
 			email.focus();
 			return false;
 		}
 
 		if (user_name.value == "") {
-			alert("이름을 입력하세요");
+			alert("이름을 입력 하십시오.");
 			user_name.focus();
 			return false;
 		}
 		if (password.value == "") {
-			alert("비밀번호를 입혁하세요");
+			alert("비밀번호를 입력 하십시오.");
 			password.focus();
 			return false;
 		}
-
-		if (email.value != "" && user_name.value != "" && password.value != "") {
+		if (phone.value == "") {
+			alert("휴대폰 번호를 입력 하십시오.");
+			password.focus();
+			return false;
+		}
+		if (have_sign.value == "") {
+			alert("수화 경험 여부를 입력 하십시오.");
+			password.focus();
+			return false;
+		}
+		if (email.value != "" && user_name.value != "" && password.value != "" && phone.value != "" && have_sign.value != "") {
 			var registerForm = document.registerForm;
 			registerForm.submit();
 		}
@@ -277,6 +286,31 @@
 						<div class="nk-int-st">
 							<input type="password" name="password" id="password"
 								class="form-control" placeholder="비밀번호를 입력 하십시오.">
+						</div>
+					</div>
+					<div class="input-group mg-t-15">
+						<span class="input-group-addon nk-ic-st-pro"><i
+							class="notika-icon notika-edit"></i></span>
+						<!-- 비멀번호 재입력 검증하는 div 이지만 제대로 작동하지 않는 것 같음. -->
+						<div class="nk-int-st">
+							<input type="password" data-match="#password" data-match-error="비밀번호가 일치하지 않습니다." 
+								class="form-control" placeholder="비밀번호를 한 번 더 입력해 주십시오." data-error=" " required>
+						</div>
+					</div>
+					<div class="input-group mg-t-15">
+						<span class="input-group-addon nk-ic-st-pro"><i
+							class="notika-icon notika-edit"></i></span>
+						<div class="nk-int-st">
+							<input type="text" name="phone" id="phone"
+								class="form-control" placeholder="휴대폰 번호를 입력 하십시오.">
+						</div>
+					</div>
+					<div class="input-group mg-t-15">
+						<span class="input-group-addon nk-ic-st-pro"><i
+							class="notika-icon notika-edit"></i></span>
+						<div class="nk-int-st">
+							<input type="text" name="have_sign" id="have_sign"
+								class="form-control" placeholder="수화 경험 여부 : 있음 또는 없음으로 입력 하십시오.">
 						</div>
 					</div>
 					<a href="#l-login" data-ma-action="nk-login-switch"

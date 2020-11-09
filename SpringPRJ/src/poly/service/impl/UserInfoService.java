@@ -117,6 +117,7 @@ public class UserInfoService implements IUserInfoService {
 			return null;
 		} else {
 			
+			//암호화된 이메일을 가져옴
 			String email = uDTO.getEmail();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmm");
 			Date d = new Date();
@@ -127,7 +128,9 @@ public class UserInfoService implements IUserInfoService {
 			String timeLimit = sdf.format(c.getTime());
 			log.info("timeLimit : " + timeLimit);
 			
-			//암호화된 비밀번호와 이메일을 섞어서 해시코드 생성
+			//timeLimit이랑 합쳐서 암호화 걸기 위해서 일시적으로 복호화함
+			email = EncryptUtil.decAES128CBC(email);
+			//timeLimit과 이메일을 섞어서 해시코드 생성
 			String accessCode = EncryptUtil.encAES128CBC(timeLimit + "," + email);
 			log.info("access code : " + accessCode);
 			// 앞서 만든 코드를 데이터베이스 암호란에 업데이트
@@ -150,6 +153,7 @@ public class UserInfoService implements IUserInfoService {
 	public int findPasswordProc(String email, String password) throws Exception {
 
 		password = EncryptUtil.encHashSHA256(password);
+		email = EncryptUtil.encAES128CBC(email);
 		
 		return userInfoMapper.findPasswordProc(email, password);
 	}

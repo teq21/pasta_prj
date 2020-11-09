@@ -7,12 +7,18 @@
 		(
 		EMAIL,
 		USER_NAME,
-		PASSWORD
+		PASSWORD,
+		PHONE,
+		HAVE_SIGN
 		)
-		values(
+		
+		values
+		(
 		#{email},
 		#{user_name},
-		#{password}
+		#{password},
+		#{phone},
+		#{have_sign}
 		)
 	</insert>
 

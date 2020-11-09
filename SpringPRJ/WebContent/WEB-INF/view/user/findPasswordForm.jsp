@@ -52,7 +52,7 @@
 												pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Za-z]).*$"
 												data-pattern-error="숫자와 영문을 조합하여 8글자 이상으로 입력해주세요"
 												class="form-control form-control-lg input-lg" id="password"
-												name="password" placeholder="새 암호 입력">
+												name="password" placeholder="숫자와 영문을 조합하여 8글자 이상으로 입력 하십시오.">
 											<div class="form-control-position">
 												<i class="icon-key3"></i>
 											</div>
@@ -62,7 +62,7 @@
 											class="form-group position-relative has-icon-left has-feedback">
 											<input type="password"
 												class="form-control form-control-lg input-lg"
-												id="verify_password" placeholder="암호 확인"
+												id="verify_password" placeholder="비밀번호 확인"
 												data-match="#password" data-error=" "
 												data-match-error="암호가 일치하지 않습니다" required>
 											<div class="form-control-position">

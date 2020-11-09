@@ -10,8 +10,20 @@ public class UserInfoDTO {
 	private String reg_dt;
 	private String chg_id;
 	private String chg_dt;
-	private String sign_use;
-	private String sign_level;
+	private String phone;
+	private String have_sign;
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getHave_sign() {
+		return have_sign;
+	}
+	public void setHave_sign(String have_sign) {
+		this.have_sign = have_sign;
+	}
 	//회원가입시, 중복가입을 방지 위해 사용할변수
 	//DB 를 조회해서 외원이 존해하면 y값을 반환함
 	//DB 테이블에 존재하지않는  가상의칼럼(ALIAS)
@@ -58,18 +70,6 @@ public class UserInfoDTO {
 	}
 	public void setChg_dt(String chg_dt) {
 		this.chg_dt = chg_dt;
-	}
-	public String getSign_use() {
-		return sign_use;
-	}
-	public void setSign_use(String sign_use) {
-		this.sign_use = sign_use;
-	}
-	public String getSign_level() {
-		return sign_level;
-	}
-	public void setSign_level(String sign_level) {
-		this.sign_level = sign_level;
 	}
 	public String getExists_yn() {
 		return exists_yn;

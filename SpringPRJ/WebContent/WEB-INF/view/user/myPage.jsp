@@ -8,12 +8,34 @@
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <title>마이페이지</title>
 <style>
-.head {text-align: center;}
-.myPageTable {text-align: center; width: 1000px; height: 300px; margin: auto;}
-.mytd {width: 300px; background-color: #F2F2F2;}
-.myButton {text-align: center;}
-.oddButton {background-color: #F2F2F2;}
+.head {
+	text-align: center;
+}
 
+.myPageTable {
+	text-align: center;
+	width: 1000px;
+	height: 300px;
+	margin: auto;
+	font-size: 18px;
+}
+
+.mytd {
+	width: 300px;
+	background-color: #F2F2F2;
+}
+
+.myButton {
+	text-align: center;
+}
+
+#oddButton {
+	background-color: #F2F2F2;
+}
+
+* {
+	font-family: "Spoqa Han Sans", sans-serif;
+}
 </style>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -171,7 +193,7 @@
 								data-toggle="dropdown" role="button" aria-expanded="false"
 								class="nav-link dropdown-toggle"><span><i
 										class="notika-icon notika-alarm"></i></span>
-								<div class="spinner4 spinner-4"></div>
+									<div class="spinner4 spinner-4"></div>
 									<div class="ntd-ctn">
 										<span>3</span>
 									</div></a>
@@ -246,7 +268,7 @@
 								role="button" aria-expanded="false"
 								class="nav-link dropdown-toggle"><span><i
 										class="notika-icon notika-menus"></i></span>
-								<div class="spinner4 spinner-4"></div>
+									<div class="spinner4 spinner-4"></div>
 									<div class="ntd-ctn">
 										<span>2</span>
 									</div></a>
@@ -596,19 +618,24 @@
 		</div>
 	</div>
 	<!-- Main Menu area End-->
-	<!-- Breadcomb area Start-->
+	
+	<!-- 제목 영역-->
 	<div class="breadcomb-area">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-					<div class="breadcomb-list">
-						<div class="row head" >
+					<div class="breadcomb-list"
+						style="background: #fff; box-shadow: 0 6px 10px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05); transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12); cursor: pointer;">
+
+						<div class="row head">
 							<h2>마이페이지</h2>
-							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-3"></div>
 						</div>
+
 					</div>
 					<br>
-					<div class="breadcomb-list">
+					<!-- 내용(표) 영역 -->
+					<div class="breadcomb-list"
+						style="background: #fff; box-shadow: 0 6px 10px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05); transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12); cursor: pointer;">
 						<div class="row">
 							<table class="myPageTable" border=1>
 								<tbody>
@@ -636,9 +663,12 @@
 							</table>
 							<br>
 							<div class="myButton">
-							<button class="btn btn-default btn-icon-notika waves-effect">메인으로</button>
-							<button class="btn btn-default btn-icon-notika waves-effect oddButton">회원정보 수정</button>
-							<button class="btn btn-default btn-icon-notika waves-effect">회원탈퇴</button>
+								<button onclick="location.href='/index.do'" id="oddButton"
+									class="btn btn-default btn-icon-notika waves-effect">메인으로</button>
+								<button class="btn btn-default btn-icon-notika waves-effect">회원정보
+									수정</button>
+								<button id="oddButton"
+									class="btn btn-default btn-icon-notika waves-effect">회원탈퇴</button>
 							</div>
 						</div>
 					</div>
@@ -649,318 +679,7 @@
 	<!-- Breadcomb area End-->
 	<!-- Contact area Start-->
 	<div class="contact-area">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-					<div class="contact-list">
-						<div class="contact-win">
-							<div class="contact-img">
-								<img src="img/post/1.jpg" alt="" />
-							</div>
-							<div class="conct-sc-ic">
-								<a class="btn" href="#"><i
-									class="notika-icon notika-facebook"></i></a> <a class="btn"
-									href="#"><i class="notika-icon notika-twitter"></i></a> <a
-									class="btn" href="#"><i
-									class="notika-icon notika-pinterest"></i></a>
-							</div>
-						</div>
-						<div class="contact-ctn">
-							<div class="contact-ad-hd">
-								<h2>John Deo</h2>
-								<p class="ctn-ads">USA, LA, aus</p>
-							</div>
-							<p>Lorem ipsum dolor sit amete of the, consectetur adipiscing
-								elitable. Vestibulum tincidunt.</p>
-						</div>
-						<div class="social-st-list">
-							<div class="social-sn">
-								<h2>Likes:</h2>
-								<p>956</p>
-							</div>
-							<div class="social-sn">
-								<h2>Comments:</h2>
-								<p>434</p>
-							</div>
-							<div class="social-sn">
-								<h2>Views:</h2>
-								<p>676</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-					<div class="contact-list sm-res-mg-t-30">
-						<div class="contact-win">
-							<div class="contact-img">
-								<img src="img/post/2.jpg" alt="" />
-							</div>
-							<div class="conct-sc-ic">
-								<a class="btn" href="#"><i
-									class="notika-icon notika-facebook"></i></a> <a class="btn"
-									href="#"><i class="notika-icon notika-twitter"></i></a> <a
-									class="btn" href="#"><i
-									class="notika-icon notika-pinterest"></i></a>
-							</div>
-						</div>
-						<div class="contact-ctn">
-							<div class="contact-ad-hd">
-								<h2>Smith</h2>
-								<p class="ctn-ads">Aus, LA, aus</p>
-							</div>
-							<p>Lorem ipsum dolor sit amete of the, consectetur adipiscing
-								elitable. Vestibulum tincidunt.</p>
-						</div>
-						<div class="social-st-list">
-							<div class="social-sn">
-								<h2>Likes:</h2>
-								<p>956</p>
-							</div>
-							<div class="social-sn">
-								<h2>Comments:</h2>
-								<p>434</p>
-							</div>
-							<div class="social-sn">
-								<h2>Views:</h2>
-								<p>676</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-					<div
-						class="contact-list sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30">
-						<div class="contact-win">
-							<div class="contact-img">
-								<img src="img/post/4.jpg" alt="" />
-							</div>
-							<div class="conct-sc-ic">
-								<a class="btn" href="#"><i
-									class="notika-icon notika-facebook"></i></a> <a class="btn"
-									href="#"><i class="notika-icon notika-twitter"></i></a> <a
-									class="btn" href="#"><i
-									class="notika-icon notika-pinterest"></i></a>
-							</div>
-						</div>
-						<div class="contact-ctn">
-							<div class="contact-ad-hd">
-								<h2>Malika</h2>
-								<p class="ctn-ads">Thi, LA, aus</p>
-							</div>
-							<p>Lorem ipsum dolor sit amete of the, consectetur adipiscing
-								elitable. Vestibulum tincidunt.</p>
-						</div>
-						<div class="social-st-list">
-							<div class="social-sn">
-								<h2>Likes:</h2>
-								<p>956</p>
-							</div>
-							<div class="social-sn">
-								<h2>Comments:</h2>
-								<p>434</p>
-							</div>
-							<div class="social-sn">
-								<h2>Views:</h2>
-								<p>676</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-					<div
-						class="contact-list sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30">
-						<div class="contact-win">
-							<div class="contact-img">
-								<img src="img/post/1.jpg" alt="" />
-							</div>
-							<div class="conct-sc-ic">
-								<a class="btn" href="#"><i
-									class="notika-icon notika-facebook"></i></a> <a class="btn"
-									href="#"><i class="notika-icon notika-twitter"></i></a> <a
-									class="btn" href="#"><i
-									class="notika-icon notika-pinterest"></i></a>
-							</div>
-						</div>
-						<div class="contact-ctn">
-							<div class="contact-ad-hd">
-								<h2>John Deo</h2>
-								<p class="ctn-ads">BG, LA, aus</p>
-							</div>
-							<p>Lorem ipsum dolor sit amete of the, consectetur adipiscing
-								elitable. Vestibulum tincidunt.</p>
-						</div>
-						<div class="social-st-list">
-							<div class="social-sn">
-								<h2>Likes:</h2>
-								<p>956</p>
-							</div>
-							<div class="social-sn">
-								<h2>Comments:</h2>
-								<p>434</p>
-							</div>
-							<div class="social-sn">
-								<h2>Views:</h2>
-								<p>676</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-					<div class="contact-list mg-t-30">
-						<div class="contact-win">
-							<div class="contact-img">
-								<img src="img/post/1.jpg" alt="" />
-							</div>
-							<div class="conct-sc-ic">
-								<a class="btn" href="#"><i
-									class="notika-icon notika-facebook"></i></a> <a class="btn"
-									href="#"><i class="notika-icon notika-twitter"></i></a> <a
-									class="btn" href="#"><i
-									class="notika-icon notika-pinterest"></i></a>
-							</div>
-						</div>
-						<div class="contact-ctn">
-							<div class="contact-ad-hd">
-								<h2>John Deo</h2>
-								<p class="ctn-ads">In, LA, aus</p>
-							</div>
-							<p>Lorem ipsum dolor sit amete of the, consectetur adipiscing
-								elitable. Vestibulum tincidunt.</p>
-						</div>
-						<div class="social-st-list">
-							<div class="social-sn">
-								<h2>Likes:</h2>
-								<p>956</p>
-							</div>
-							<div class="social-sn">
-								<h2>Comments:</h2>
-								<p>434</p>
-							</div>
-							<div class="social-sn">
-								<h2>Views:</h2>
-								<p>676</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-					<div class="contact-list mg-t-30">
-						<div class="contact-win">
-							<div class="contact-img">
-								<img src="img/post/2.jpg" alt="" />
-							</div>
-							<div class="conct-sc-ic">
-								<a class="btn" href="#"><i
-									class="notika-icon notika-facebook"></i></a> <a class="btn"
-									href="#"><i class="notika-icon notika-twitter"></i></a> <a
-									class="btn" href="#"><i
-									class="notika-icon notika-pinterest"></i></a>
-							</div>
-						</div>
-						<div class="contact-ctn">
-							<div class="contact-ad-hd">
-								<h2>Smith</h2>
-								<p class="ctn-ads">Pk, LA, aus</p>
-							</div>
-							<p>Lorem ipsum dolor sit amete of the, consectetur adipiscing
-								elitable. Vestibulum tincidunt.</p>
-						</div>
-						<div class="social-st-list">
-							<div class="social-sn">
-								<h2>Likes:</h2>
-								<p>956</p>
-							</div>
-							<div class="social-sn">
-								<h2>Comments:</h2>
-								<p>434</p>
-							</div>
-							<div class="social-sn">
-								<h2>Views:</h2>
-								<p>676</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-					<div class="contact-list mg-t-30">
-						<div class="contact-win">
-							<div class="contact-img">
-								<img src="img/post/4.jpg" alt="" />
-							</div>
-							<div class="conct-sc-ic">
-								<a class="btn" href="#"><i
-									class="notika-icon notika-facebook"></i></a> <a class="btn"
-									href="#"><i class="notika-icon notika-twitter"></i></a> <a
-									class="btn" href="#"><i
-									class="notika-icon notika-pinterest"></i></a>
-							</div>
-						</div>
-						<div class="contact-ctn">
-							<div class="contact-ad-hd">
-								<h2>Malika</h2>
-								<p class="ctn-ads">London, LA, aus</p>
-							</div>
-							<p>Lorem ipsum dolor sit amete of the, consectetur adipiscing
-								elitable. Vestibulum tincidunt.</p>
-						</div>
-						<div class="social-st-list">
-							<div class="social-sn">
-								<h2>Likes:</h2>
-								<p>956</p>
-							</div>
-							<div class="social-sn">
-								<h2>Comments:</h2>
-								<p>434</p>
-							</div>
-							<div class="social-sn">
-								<h2>Views:</h2>
-								<p>676</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-					<div class="contact-list mg-t-30">
-						<div class="contact-win">
-							<div class="contact-img">
-								<img src="img/post/1.jpg" alt="" />
-							</div>
-							<div class="conct-sc-ic">
-								<a class="btn" href="#"><i
-									class="notika-icon notika-facebook"></i></a> <a class="btn"
-									href="#"><i class="notika-icon notika-twitter"></i></a> <a
-									class="btn" href="#"><i
-									class="notika-icon notika-pinterest"></i></a>
-							</div>
-						</div>
-						<div class="contact-ctn">
-							<div class="contact-ad-hd">
-								<h2>John Deo</h2>
-								<p class="ctn-ads">Aus, LA, aus</p>
-							</div>
-							<p>Lorem ipsum dolor sit amete of the, consectetur adipiscing
-								elitable. Vestibulum tincidunt.</p>
-						</div>
-						<div class="social-st-list">
-							<div class="social-sn">
-								<h2>Likes:</h2>
-								<p>956</p>
-							</div>
-							<div class="social-sn">
-								<h2>Comments:</h2>
-								<p>434</p>
-							</div>
-							<div class="social-sn">
-								<h2>Views:</h2>
-								<p>676</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+		<div class="container"></div>
 	</div>
 	<!-- Contact area End-->
 	<!-- Start Footer area-->

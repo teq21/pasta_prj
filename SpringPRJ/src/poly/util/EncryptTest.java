@@ -1,4 +1,5 @@
 package poly.util;
+import poly.util.EncryptUtil;
 
 public class EncryptTest {
 
