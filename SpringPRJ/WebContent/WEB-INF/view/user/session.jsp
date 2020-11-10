@@ -5,6 +5,7 @@
 	String user_no = CmmUtil.nvl((String)session.getAttribute("user_no"));
 	String user_type = CmmUtil.nvl((String)session.getAttribute("user_type"));
 	String state = CmmUtil.nvl((String)session.getAttribute("state"));
+	String email = CmmUtil.nvl((String)session.getAttribute("email"));
 %>
 <%if(CmmUtil.nvl(user_no).equals("")){ %>
 <script>

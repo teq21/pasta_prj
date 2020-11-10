@@ -170,8 +170,17 @@ public class UserInfoService implements IUserInfoService {
 	@Override
 	public UserInfoDTO getUserInfo(String user_no) throws Exception {
 
+		UserInfoDTO rDTO = new UserInfoDTO();
 		
-		return userInfoMapper.getUserInfo(user_no);
+		rDTO = userInfoMapper.getUserInfo(user_no);
+		
+		String email = rDTO.getEmail();
+		
+		email = EncryptUtil.decAES128CBC(email);
+		
+		rDTO.setEmail(email);
+		
+		return rDTO;
 	}
 
 

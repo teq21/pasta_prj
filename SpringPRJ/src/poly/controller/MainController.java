@@ -48,7 +48,8 @@ public class MainController {
 	public String index(HttpServletRequest request, HttpServletResponse response, HttpSession session, ModelMap model) {
 		log.info(this.getClass().getName());
 		
-		String user_no = (String) session.getAttribute("user_no");
+		/*
+		 
 		String state = (String) session.getAttribute("state");
 		String user_type = (String) session.getAttribute("user_type");
 		
@@ -59,6 +60,8 @@ public class MainController {
 		model.addAttribute("user_no", user_no);
 		model.addAttribute("state", state);
 		model.addAttribute("user_type", user_type);
+		
+		*/
 		
 		return "/index";
 	}

@@ -209,8 +209,11 @@ public class UserInfoController {
 		session.setAttribute("user_no", uDTO.getUser_no());
 		session.setAttribute("state", uDTO.getState());
 		session.setAttribute("user_type", uDTO.getUser_type());
+		session.setAttribute("email", uDTO.getEmail());
 		
 		resultMap.put("loginResult", "1");
+		
+		pDTO = null;
 		
 		return resultMap;
 		
@@ -460,6 +463,10 @@ public class UserInfoController {
 		String user_no = request.getParameter("user_no");
 		log.info("user_no : " + user_no);
 		UserInfoDTO uDTO = userInfoService.getUserInfo(user_no);
+		
+		
+		
+		
 		if(uDTO == null) {
 			model.addAttribute("msg", "존재하지 않는 회원입니다.");
 			model.addAttribute("url", "/index.do");
