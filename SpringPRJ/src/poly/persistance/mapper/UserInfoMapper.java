@@ -27,6 +27,10 @@ public interface UserInfoMapper {
 	int findPasswordProc(String email, String password);
 
 	int verifyEmail(String email, String state);
+
+	UserInfoDTO getUserInfo(String user_no) throws Exception;
+
+	UserInfoDTO forSession(UserInfoDTO pDTO) throws Exception;
 	
 	
 }

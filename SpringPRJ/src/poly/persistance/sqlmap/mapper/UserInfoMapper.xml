@@ -42,10 +42,9 @@
 
 	<!-- 로그인을 위한 아이디와 비밀번호가 일치하는지 확인하기 -->
 	<select id="getUserLoginCheck" parameterType="UserInfoDTO" resultType="UserInfoDTO">
-		SELECT EMAIL
+		SELECT EMAIL, PASSWORD
 		FROM USER_INFO
-		WHERE EMAIL=#{email}
-		and PASSWORD=#{password}
+		WHERE EMAIL=#{email} AND PASSWORD=#{password} AND STATE NOT IN(1)
 	</select>
 	
 	<select id="findPassword" resultType="UserInfoDTO">
@@ -81,5 +80,25 @@
 		EMAIL=#{0}
 		AND STATE=1
 	</update>
+	
+	<!-- 마이페이지 접속시 유저 정보 호출 -->
+	<select id="getUserInfo" parameterType="String" resultType="UserInfoDTO">
+	SELECT
+		USER_NAME,
+		EMAIL,
+		REG_DT,
+		HAVE_SIGN,
+		PHONE
+	FROM
+		USER_INFO
+	WHERE
+		USER_NO = #{0}
+	</select>
+	
+	<!-- 로그인시 세션 설정을 위함 -->
+	<select id="forSession" resultType="UserInfoDTO">
+	SELECT * FROM USER_INFO
+	WHERE EMAIL = #{email} AND PASSWORD = #{password}
+	</select>
 	
 </mapper>

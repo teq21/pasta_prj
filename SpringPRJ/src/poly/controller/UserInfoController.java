@@ -177,36 +177,79 @@ public class UserInfoController {
 	
 	//로그인처리 함수
 	@PostMapping(value = "/user/getUserLoginCheck")
-	public @ResponseBody Map<Object, Object> getUserLoginCheck(@RequestBody UserInfoDTO userInfo,HttpSession session, HttpServletRequest request) throws Exception {
+	public @ResponseBody Map<Object, Object> getUserLoginCheck(@RequestBody UserInfoDTO uDTO, HttpSession session, HttpServletRequest request) throws Exception {
 		log.info(this.getClass().getName() + ".getuserlogincheck start123456!");
-		log.info("request userInfo >>>>>"+userInfo.toString());
+		log.info("request userInfo >>>>>"+uDTO.toString());
 		// 로그인 처리결과를 저장할변수 (로그인성공:1, 아이디, 비밀번호 불일치로인한 실패:0, 시스템에러:2)
-		int res = 0;
 		
 		
 		// 웹(회원정보 입력화면)에서 받는 정보를 저장할 변수
-		UserInfoDTO pDTO = null;
+		UserInfoDTO pDTO = new UserInfoDTO();
 		Map<Object, Object> resultMap = new HashMap<Object, Object>();
 		
-		try {
+		String email = CmmUtil.nvl(uDTO.getEmail());// 이메일
+		String password = CmmUtil.nvl(uDTO.getPassword());// 비밀번호
+		
+		pDTO = new UserInfoDTO();
+
+		pDTO.setEmail(EncryptUtil.encAES128CBC(email));
+
+		pDTO.setPassword(EncryptUtil.encHashSHA256(password));
+		
+		uDTO = userInfoService.forSession(pDTO);
+		
+		if(uDTO == null) {
+			
+			resultMap.put("loginResult", "0");
+			
+			return resultMap;
+			
+		}
+		
+		session.setAttribute("user_no", uDTO.getUser_no());
+		session.setAttribute("state", uDTO.getState());
+		session.setAttribute("user_type", uDTO.getUser_type());
+		
+		resultMap.put("loginResult", "1");
+		
+		return resultMap;
+		
+		/*try {
 			// 회원정보 입력화면에서 받는 정보를 String 변수에 저장시작!
 			// 무조건 웹으로 받은 정보는 DTO에 저장하기위해 임시로 STring 변수에 저장함
 
-			String email = CmmUtil.nvl(userInfo.getEmail());// 이메일
-			String password = CmmUtil.nvl(userInfo.getPassword());// 비밀번호
-			
+			String email = CmmUtil.nvl(uDTO.getEmail());// 이메일
+			String password = CmmUtil.nvl(uDTO.getPassword());// 비밀번호
 			
 			pDTO = new UserInfoDTO();
 
 			pDTO.setEmail(EncryptUtil.encAES128CBC(email));
 
 			pDTO.setPassword(EncryptUtil.encHashSHA256(password));
-
+			
 			res = userInfoService.getUserLoginCheck(pDTO);
-
+			
 			if (res == 1) {
-				session.setAttribute("email", pDTO.getEmail());
-				session.setAttribute("state", pDTO.getState());
+				
+				 //user_no : 회원번호로 구분 / PK
+				 //state : 유저 상태 구분 / 0 : 이상 없음 / 1 : 문제 있음
+				 //user_type : 일반 유저와 관리자 구분 / 1 : 일반 유저 / 2 : 관리자
+				 
+				
+				uDTO = userInfoService.forSession(uDTO);
+				
+				if(uDTO == null) {
+					resultMap.put("loginResult", res);
+				}
+				
+				session.setAttribute("user_no", uDTO.getUser_no());
+				session.setAttribute("state", uDTO.getState());
+				session.setAttribute("user_type", uDTO.getUser_type());
+				
+				
+				resultMap.put("loginResult", res);
+				log.info(resultMap.get("loginResult"));
+				return resultMap;
 			}
 
 		} catch (Exception e) {
@@ -219,6 +262,8 @@ public class UserInfoController {
 		}
 
 		return resultMap;
+		
+		*/
 	}
 	
 	@RequestMapping(value = "/user/logout")
@@ -409,11 +454,19 @@ public class UserInfoController {
 	}
 	
 	@RequestMapping(value = "/user/myPage")
-	public String myPage() {
+	public String myPage(HttpServletRequest request, HttpServletResponse response, HttpSession session, ModelMap model) throws Exception {
 		log.info(this.getClass().getName() + "myPage ok!");
-		
-		
 
+		String user_no = request.getParameter("user_no");
+		log.info("user_no : " + user_no);
+		UserInfoDTO uDTO = userInfoService.getUserInfo(user_no);
+		if(uDTO == null) {
+			model.addAttribute("msg", "존재하지 않는 회원입니다.");
+			model.addAttribute("url", "/index.do");
+			return "/redirect";
+		}
+		model.addAttribute("uDTO", uDTO);
+		
 		return "/user/myPage";
 	}
 	

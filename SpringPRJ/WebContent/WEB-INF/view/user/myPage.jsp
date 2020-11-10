@@ -1,5 +1,12 @@
+<%@page import="poly.dto.UserInfoDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="../user/session.jsp" %>
+<%
+	UserInfoDTO uDTO = (UserInfoDTO)request.getAttribute("uDTO");
+	//UserDTO uDTO = (UserDTO)request.getAttribute("uDTO");
+	//String userTypeKor = "일반 사용자";
+%>
 <!DOCTYPE html>
 <html class="no-js" lang="ko">
 
@@ -641,23 +648,23 @@
 								<tbody>
 									<tr>
 										<td class="mytd">이름</td>
-										<td>user_name</td>
+										<td><%=CmmUtil.nvl(uDTO.getUser_name()) %></td>
 									</tr>
 									<tr>
 										<td class="mytd">이메일</td>
-										<td>email</td>
+										<td><%=CmmUtil.nvl(uDTO.getEmail()) %></td>
 									</tr>
 									<tr>
 										<td class="mytd">가입일</td>
-										<td>reg_dt</td>
+										<td><%=CmmUtil.nvl(uDTO.getReg_dt()) %></td>
 									</tr>
 									<tr>
 										<td class="mytd">수화 경험</td>
-										<td>있음</td>
+										<td><%=CmmUtil.nvl(uDTO.getHave_sign()) %></td>
 									</tr>
 									<tr>
 										<td class="mytd">휴대폰 번호</td>
-										<td>01023456789</td>
+										<td><%=CmmUtil.nvl(uDTO.getPhone()) %></td>
 									</tr>
 								</tbody>
 							</table>

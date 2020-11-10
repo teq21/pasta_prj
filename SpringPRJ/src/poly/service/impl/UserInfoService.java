@@ -167,6 +167,21 @@ public class UserInfoService implements IUserInfoService {
 	}
 
 
+	@Override
+	public UserInfoDTO getUserInfo(String user_no) throws Exception {
+
+		
+		return userInfoMapper.getUserInfo(user_no);
+	}
+
+
+	@Override
+	public UserInfoDTO forSession(UserInfoDTO pDTO) throws Exception {
+
+		return userInfoMapper.forSession(pDTO);
+	}
+
+
 
 
 }

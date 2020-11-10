@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="./user/session.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
@@ -164,7 +165,7 @@ var TxtType = function(el, toRotate, period) {
             </div>
             <div class="area_gnb" style="margin-top: 25px;float:right">
                   <a href="/user/login_register.do" class="white"> 로그인 </a> 
-                  <b class="white"> | </b> <a href="/user/myPage.do"
+                  <b class="white"> | </b> <a href="/user/myPage.do?user_no=<%=user_no %>"
                      class="white"> 마이페이지</a>
                </div>
          </div>

@@ -19,4 +19,8 @@ public interface IUserInfoService {
 	int findPasswordProc(String email, String password) throws Exception;
 	
 	int verifyEmail(String email, String state) throws Exception;
+	
+	UserInfoDTO getUserInfo(String user_no) throws Exception;
+	
+	UserInfoDTO forSession(UserInfoDTO pDTO) throws Exception;
 }
