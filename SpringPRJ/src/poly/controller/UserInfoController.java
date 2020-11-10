@@ -182,7 +182,7 @@ public class UserInfoController {
 		log.info("request userInfo >>>>>"+userInfo.toString());
 		// 로그인 처리결과를 저장할변수 (로그인성공:1, 아이디, 비밀번호 불일치로인한 실패:0, 시스템에러:2)
 		int res = 0;
-		session = request.getSession();
+		
 		
 		// 웹(회원정보 입력화면)에서 받는 정보를 저장할 변수
 		UserInfoDTO pDTO = null;
@@ -205,7 +205,8 @@ public class UserInfoController {
 			res = userInfoService.getUserLoginCheck(pDTO);
 
 			if (res == 1) {
-				session.setAttribute("ss_email", email);
+				session.setAttribute("email", pDTO.getEmail());
+				session.setAttribute("state", pDTO.getState());
 			}
 
 		} catch (Exception e) {
@@ -218,6 +219,14 @@ public class UserInfoController {
 		}
 
 		return resultMap;
+	}
+	
+	@RequestMapping(value = "/user/logout")
+	public String logout(HttpSession session, ModelMap model) {
+		session.invalidate();
+		model.addAttribute("msg", "로그아웃하였습니다.");
+		model.addAttribute("url", "/index.do");
+		return "/redirect";
 	}
 	
 	@RequestMapping(value = "/user/findPasswordProc")

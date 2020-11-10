@@ -118,6 +118,8 @@
 							}
 
 						});
+						
+						
 
 					});
 
@@ -249,10 +251,14 @@
 			<div class="nk-navigation nk-lg-ic">
 				<a href="#" data-ma-action="nk-login-switch"
 					data-ma-block="#l-register"><i
-					class="notika-icon notika-plus-symbol"></i> <span>회원가입</span></a> <a
+					class="notika-icon notika-plus-symbol"></i> <span>회원가입</span></a> 
+				<a
 					href="#" data-ma-action="nk-login-switch"
 					data-ma-block="#l-forget-password"><i>?</i> <span>비밀번호
 						찾기</span></a>
+				<a
+					href="/index.do" data-ma-action="nk-login-switch"
+					data-ma-block="#l-register"><i>?</i> <span>메인으로</span></a>
 			</div>
 		</div>
 

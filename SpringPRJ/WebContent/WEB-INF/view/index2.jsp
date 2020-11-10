@@ -120,7 +120,7 @@ var chartColors = {
 async function onRefresh(chart) {
 	const a = await getPredictValue1();
 	const b = await getPredictValue2();
-	if(a>0.9){
+	if(a==1.0){
 		await $ ('.vcheck').show();
 		await $ ('#vcheckstring').show();
 		await $ ('#cha').show();

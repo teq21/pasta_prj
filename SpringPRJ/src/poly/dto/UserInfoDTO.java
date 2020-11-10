@@ -12,6 +12,28 @@ public class UserInfoDTO {
 	private String chg_dt;
 	private String phone;
 	private String have_sign;
+	private String state;
+	private String user_no;
+	private String user_type;
+	
+	public String getUser_type() {
+		return user_type;
+	}
+	public void setUser_type(String user_type) {
+		this.user_type = user_type;
+	}
+	public String getUser_no() {
+		return user_no;
+	}
+	public void setUser_no(String user_no) {
+		this.user_no = user_no;
+	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
 	public String getPhone() {
 		return phone;
 	}
