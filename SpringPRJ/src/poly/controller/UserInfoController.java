@@ -209,7 +209,7 @@ public class UserInfoController {
 		session.setAttribute("user_no", uDTO.getUser_no());
 		session.setAttribute("state", uDTO.getState());
 		session.setAttribute("user_type", uDTO.getUser_type());
-		session.setAttribute("email", uDTO.getEmail());
+		session.setAttribute("user_name", uDTO.getUser_name());
 		
 		resultMap.put("loginResult", "1");
 		
@@ -460,18 +460,16 @@ public class UserInfoController {
 	public String myPage(HttpServletRequest request, HttpServletResponse response, HttpSession session, ModelMap model) throws Exception {
 		log.info(this.getClass().getName() + "myPage ok!");
 
-		String user_no = request.getParameter("user_no");
+		String user_no = (String)session.getAttribute("user_no");
 		log.info("user_no : " + user_no);
 		UserInfoDTO uDTO = userInfoService.getUserInfo(user_no);
-		
-		
-		
 		
 		if(uDTO == null) {
 			model.addAttribute("msg", "존재하지 않는 회원입니다.");
 			model.addAttribute("url", "/index.do");
 			return "/redirect";
 		}
+		
 		model.addAttribute("uDTO", uDTO);
 		
 		return "/user/myPage";
@@ -516,4 +514,100 @@ public class UserInfoController {
 		return "/redirect";
 		
 	}
+	
+	@RequestMapping(value = "/user/editMyPage")
+	public String editMyPage(HttpServletRequest request, HttpServletResponse response, HttpSession session, ModelMap model) throws Exception {
+		log.info(this.getClass().getName() + "editMyPage start");
+
+		String user_no = (String) session.getAttribute("user_no");
+		//String user_no = request.getParameter("user_no");
+		log.info("user_no : " + user_no);
+		
+		UserInfoDTO uDTO = userInfoService.getUserInfo(user_no);
+		
+		if(uDTO == null) {
+			model.addAttribute("msg", "존재하지 않는 회원입니다.");
+			model.addAttribute("url", "/index.do");
+			return "/redirect";
+		}
+		
+		model.addAttribute("uDTO", uDTO);
+		
+		uDTO = null;
+		
+		return "/user/editMyPage";
+	}
+	
+	@RequestMapping(value = "/user/doEditMyPage")
+	public String doEditMyPage(HttpServletRequest request, HttpServletResponse response, HttpSession session, ModelMap model) throws Exception {
+		
+		log.info(this.getClass().getName() + "doEditMyPage start");
+
+		UserInfoDTO pDTO = new UserInfoDTO();
+		
+		String user_no = (String)session.getAttribute("user_no");
+		String user_name = request.getParameter("user_name");
+		String have_sign = request.getParameter("have_sign");
+		String phone = request.getParameter("phone");
+		
+		log.info("user_no : " + user_no);
+		log.info("user_name : " + user_name);
+		log.info("have_sign : " + have_sign);
+		log.info("phone : " + phone);
+		
+		pDTO.setUser_no(user_no);
+		pDTO.setUser_name(user_name);
+		pDTO.setHave_sign(have_sign);
+		pDTO.setPhone(phone);
+		
+		int res = userInfoService.updateMyPage(pDTO);
+		
+		log.info("res : " + res);
+		
+		String msg;
+		String url = "/user/myPage.do";
+		
+		if(res>0) {
+			msg = "마이페이지 수정에 성공 하였습니다.";
+		} else {
+			msg = "마이페이지 수정에 실패 하였습니다. 잠시 후 다시 시도하여 주십시오.";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		log.info(this.getClass().getName() + "doEditMyPage end");
+		
+		return "/redirect";
+	}
+	
+	@RequestMapping(value = "/user/deleteUserInfo")
+	public String deleteUserInfo(HttpServletRequest request, HttpServletResponse response, HttpSession session, ModelMap model) throws Exception {
+		log.info(this.getClass().getName() + "deleteUserInfo start");
+
+		String user_no = (String) session.getAttribute("user_no");
+		//String user_no = request.getParameter("user_no");
+		log.info("user_no : " + user_no);
+		
+		int res = userInfoService.deleteUserInfo(user_no);
+		
+		String msg;
+		String url = "/user/login_register.do";
+		
+		if(res > 0) {
+			msg = "회원 탈퇴 처리가 완료 되었습니다.";
+		} else {
+			msg = "잠시 후 다시 시도해 주십시오.";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		log.info(this.getClass().getName() + " .deleteUserInfo end");
+		
+		return "/redirect";
+	}
+	
+	
+	
 }

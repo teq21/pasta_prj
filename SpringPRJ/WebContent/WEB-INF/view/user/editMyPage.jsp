@@ -1,27 +1,17 @@
 <%@page import="poly.dto.UserInfoDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="static poly.util.CmmUtil.nvl"%>
 <%@ include file="../user/session.jsp" %>
 <%
 	UserInfoDTO uDTO = (UserInfoDTO)request.getAttribute("uDTO");
 	//UserDTO uDTO = (UserDTO)request.getAttribute("uDTO");
 	//String userTypeKor = "일반 사용자";
 %>
-<%
-	if(uDTO == null) {
-		uDTO = new UserInfoDTO();
-	}
-%>
-
 <!DOCTYPE html>
 <html class="no-js" lang="ko">
+
 <head>
-<%if(CmmUtil.nvl(user_no).equals("")){ %>
-<script>
-alert("로그인이 필요합니다.");
-location.href = "/index.do";
-</script>
-<%}%>
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <title>마이페이지</title>
@@ -655,40 +645,38 @@ location.href = "/index.do";
 					<div class="breadcomb-list"
 						style="background: #fff; box-shadow: 0 6px 10px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05); transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12); cursor: pointer;">
 						<div class="row">
+						<form action="/user/doEditMyPage.do" method="post">
 							<table class="myPageTable" border=1>
 								<tbody>
 									<tr>
 										<td class="mytd">이름</td>
-										<td><%=CmmUtil.nvl(uDTO.getUser_name()) %></td>
+										<td><input type="text" name="user_name" value="<%=nvl(uDTO.getUser_name()) %>"></td>
 									</tr>
 									<tr>
 										<td class="mytd">이메일</td>
-										<td><%=CmmUtil.nvl(uDTO.getEmail()) %></td>
+										<td><%=nvl(uDTO.getEmail()) %></td>
 									</tr>
 									<tr>
 										<td class="mytd">가입일</td>
-										<td><%=CmmUtil.nvl(uDTO.getReg_dt()) %></td>
+										<td><%=nvl(uDTO.getReg_dt()) %></td>
 									</tr>
 									<tr>
 										<td class="mytd">수화 경험</td>
-										<td><%=CmmUtil.nvl(uDTO.getHave_sign()) %></td>
+										<td><input type="text" name="have_sign" value="<%=nvl(uDTO.getHave_sign()) %>"></td>
 									</tr>
 									<tr>
 										<td class="mytd">휴대폰 번호</td>
-										<td><%=CmmUtil.nvl(uDTO.getPhone()) %></td>
+										<td><input type="text" name="phone" value="<%=nvl(uDTO.getPhone()) %>"></td>
 									</tr>
 								</tbody>
 							</table>
 							<br>
-							
 							<div class="myButton">
-								<button onclick="location.href='/index.do'" id="oddButton"
-									class="btn btn-default btn-icon-notika waves-effect">메인으로</button>
-								<button onclick="location.href='/user/editMyPage.do'" class="btn btn-default btn-icon-notika waves-effect">회원정보
-									수정</button>
-								<button id="oddButton" onclick="location.href='/user/deleteUserInfo.do'"
-									class="btn btn-default btn-icon-notika waves-effect">회원탈퇴</button>
+								<button onclick="location.href='/user/myPage.do'"class="btn btn-default btn-icon-notika waves-effect">취소</button>
+								<button id="oddButton" type="submit"
+									class="btn btn-default btn-icon-notika waves-effect">저장</button>
 							</div>
+							</form>
 						</div>
 					</div>
 				</div>

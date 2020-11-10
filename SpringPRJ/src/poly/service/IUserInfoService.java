@@ -23,4 +23,8 @@ public interface IUserInfoService {
 	UserInfoDTO getUserInfo(String user_no) throws Exception;
 	
 	UserInfoDTO forSession(UserInfoDTO pDTO) throws Exception;
+	
+	int deleteUserInfo(String user_no) throws Exception;
+	
+	int updateMyPage(UserInfoDTO pDTO) throws Exception;
 }

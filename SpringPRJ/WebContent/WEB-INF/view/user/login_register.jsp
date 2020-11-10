@@ -119,6 +119,28 @@
 
 						});
 						
+						$("#index").on("click", function() {
+							var email = $("#login_email").val();
+							var password = $("#login_password").val();
+
+							if (!email) {
+								alert("이메일을 입력하세요");
+								$("#login_email").focus();
+								return false;
+							}
+
+							if (!password) {
+								alert("비밀번호를 입력하세요");
+								$("#login_password").focus();
+								return false;
+							}
+
+							if (email && password) {
+								loginSubmit();
+							}
+
+						});
+						
 						
 
 					});
@@ -258,7 +280,7 @@
 						찾기</span></a>
 				<a
 					href="/index.do" data-ma-action="nk-login-switch"
-					data-ma-block="#l-register"><i>?</i> <span>메인으로</span></a>
+					data-ma-block="#l-register"><i>?</i><span>메인으로</span></a>
 			</div>
 		</div>
 

@@ -95,10 +95,27 @@
 		USER_NO = #{0}
 	</select>
 	
-	<!-- 로그인시 세션 설정을 위함 -->
+	<!-- 로그인 확인 및 세션 설정을 위함 -->
 	<select id="forSession" resultType="UserInfoDTO">
 	SELECT * FROM USER_INFO
 	WHERE EMAIL = #{email} AND PASSWORD = #{password}
 	</select>
+	
+	<!-- 마이페이지 -> 회원탈퇴 -->
+	<delete id="deleteUserInfo" parameterType="String">
+	DELETE FROM USER_INFO
+	WHERE USER_NO = #{0}
+	</delete>
+	
+	<!-- 마이페이지 -> 회원정보 수정 -->
+	<update id="updateMyPage" parameterType="UserInfoDTO">
+	UPDATE USER_INFO
+	SET
+		USER_NAME = #{user_name},
+		HAVE_SIGN = #{have_sign},
+		PHONE = #{phone}
+	WHERE
+		USER_NO = #{user_no}
+	</update>
 	
 </mapper>

@@ -183,11 +183,24 @@ public class UserInfoService implements IUserInfoService {
 		return rDTO;
 	}
 
-
 	@Override
 	public UserInfoDTO forSession(UserInfoDTO pDTO) throws Exception {
 
 		return userInfoMapper.forSession(pDTO);
+	}
+
+
+	@Override
+	public int deleteUserInfo(String user_no) throws Exception {
+
+		return userInfoMapper.deleteUserInfo(user_no);
+	}
+
+
+	@Override
+	public int updateMyPage(UserInfoDTO pDTO) throws Exception {
+
+		return userInfoMapper.updateMyPage(pDTO);
 	}
 
 

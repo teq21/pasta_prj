@@ -164,9 +164,16 @@ var TxtType = function(el, toRotate, period) {
                   
             </div>
             <div class="area_gnb" style="margin-top: 25px;float:right">
-                  <a href="/user/login_register.do" class="white"> 로그인 </a> 
-                  <b class="white"> | </b> <a href="/user/myPage.do?user_no=<%=user_no %>"
+            	<%if(user_type.equals("1") && state.equals("0")) { %>
+            	<b class="white"><%=user_name %>님, 환영합니다!</b>
+            	<a href="user/logout.do" class="white">로그아웃</a>
+            	<b class="white"> | </b> <a href="/user/myPage.do"
                      class="white"> 마이페이지</a>
+                <%} else {%>
+            	<a href="/user/login_register.do" class="white"> 로그인 </a> 
+            	<b class="white"> | </b> <a href="/user/myPage.do"
+                     class="white"> 마이페이지</a>
+                <%} %>
                </div>
          </div>
       </div>
