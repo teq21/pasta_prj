@@ -636,7 +636,7 @@
 						style="background: #fff; box-shadow: 0 6px 10px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05); transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12); cursor: pointer;">
 
 						<div class="row head">
-							<h2>마이페이지</h2>
+							<h2>마이페이지 수정</h2>
 						</div>
 
 					</div>
@@ -650,7 +650,7 @@
 								<tbody>
 									<tr>
 										<td class="mytd">이름</td>
-										<td><input type="text" name="user_name" value="<%=nvl(uDTO.getUser_name()) %>"></td>
+										<td><input style="border: 0; text-align: center;" type="text" name="user_name" value="<%=nvl(uDTO.getUser_name()) %>" placeholder="이름"></td>
 									</tr>
 									<tr>
 										<td class="mytd">이메일</td>
@@ -662,19 +662,18 @@
 									</tr>
 									<tr>
 										<td class="mytd">수화 경험</td>
-										<td><input type="text" name="have_sign" value="<%=nvl(uDTO.getHave_sign()) %>"></td>
+										<td><input style="border: 0; text-align: center;" type="text" name="have_sign" value="<%=nvl(uDTO.getHave_sign()) %>" placeholder="수화 경험 여부"></td>
 									</tr>
 									<tr>
 										<td class="mytd">휴대폰 번호</td>
-										<td><input type="text" name="phone" value="<%=nvl(uDTO.getPhone()) %>"></td>
+										<td><input style="border: 0; text-align: center;" type="text" name="phone" value="<%=nvl(uDTO.getPhone()) %>" placeholder="휴대폰 번호"></td>
 									</tr>
 								</tbody>
 							</table>
 							<br>
 							<div class="myButton">
-								<button onclick="location.href='/user/myPage.do'"class="btn btn-default btn-icon-notika waves-effect">취소</button>
-								<button id="oddButton" type="submit"
-									class="btn btn-default btn-icon-notika waves-effect">저장</button>
+								<button type="button" onclick="location.href='/user/myPage.do'" class="btn btn-default btn-icon-notika waves-effect">취소</button>
+								<button id="oddButton" type="submit" class="btn btn-default btn-icon-notika waves-effect">저장</button>
 							</div>
 							</form>
 						</div>
