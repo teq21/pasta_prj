@@ -8,6 +8,8 @@
 <title>Login Register | Notika - Notika Admin Template</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 새로운 폰트 -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
 <!-- favicon
 		============================================ -->
 <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
@@ -232,6 +234,10 @@
 		}
 	}
 </script>
+
+<style>
+*{font-family: 'Noto Sans KR', sans-serif;}
+</style>
 </head>
 
 <body>

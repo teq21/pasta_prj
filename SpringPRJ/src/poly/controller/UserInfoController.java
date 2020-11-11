@@ -283,11 +283,13 @@ public class UserInfoController {
 		
 		UserInfoDTO uDTO = new UserInfoDTO();
 		String email2 = request.getParameter("email2");
+		String user_name2 = request.getParameter("user_name2");
 		log.info("암호화 전 이메일 : " + email2);
 		email2 = EncryptUtil.encAES128CBC(email2);
 		log.info("암호화 후 이메일 : " + email2);
 		//암호화한 이메일을 가지고 서비스 갔다오기 위함
 		uDTO.setEmail(email2);
+		uDTO.setUser_name(user_name2);
 		
 		//login_register.jsp로부터 받아온 email로 초기화
 		//uDTO.setEmail(request.getParameter("email2"));
@@ -295,12 +297,12 @@ public class UserInfoController {
 		// uDTO에 암호화된 패스워드와 이메일 불러옴
 		uDTO = userInfoService.findPassword(uDTO);
 		
-		model.addAttribute("title", "암호 초기화");
+		model.addAttribute("title", "비밀번호 찾기");
 		model.addAttribute("findType", "pw");
 		
 		// 없을 경우
 		if (uDTO == null) {
-			model.addAttribute("msg", "해당 아이디는 존재하지 않습니다.");
+			model.addAttribute("msg", "해당 이메일은 존재하지 않습니다.");
 			model.addAttribute("status", "1");
 			return "/user/findResult";
 
@@ -462,6 +464,14 @@ public class UserInfoController {
 
 		String user_no = (String)session.getAttribute("user_no");
 		log.info("user_no : " + user_no);
+		
+		if(user_no.equals("null")) {
+			model.addAttribute("msg", "로그인이 필요한 서비스 입니다.");
+			model.addAttribute("url", "/index.do");
+			return "/redirect";
+			
+		}
+		
 		UserInfoDTO uDTO = userInfoService.getUserInfo(user_no);
 		
 		if(uDTO == null) {
@@ -608,6 +618,12 @@ public class UserInfoController {
 		return "/redirect";
 	}
 	
+	@RequestMapping(value = "/dummy")
+	public String dummy() {
+		log.info(this.getClass().getName() + "dummy ok!");
+
+		return "/user/findResultDummy";
+	}
 	
 	
 }
