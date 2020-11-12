@@ -410,6 +410,7 @@ a.page_link{color:black;}
 		</div>
 	</div>
 	<!-- Animateions area End-->
+	
 
 	<!-- Start Footer area-->
 	<div class="footer-copyright-area">

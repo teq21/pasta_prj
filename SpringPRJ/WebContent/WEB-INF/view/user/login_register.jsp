@@ -285,8 +285,8 @@
 					data-ma-block="#l-forget-password"><i>?</i> <span>비밀번호
 						찾기</span></a>
 				<a
-					href="/index.do" data-ma-action="nk-login-switch"
-					data-ma-block="#l-register"><i>?</i><span>메인으로</span></a>
+					onclick="location.href='/index.do'" data-ma-action="nk-login-switch"
+					data-ma-block="#l-register" style="cursor: pointer;"><i>?</i><span>메인으로</span></a>
 			</div>
 		</div>
 

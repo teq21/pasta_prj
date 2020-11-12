@@ -272,7 +272,15 @@ public class UserInfoController {
 	@RequestMapping(value = "/user/logout")
 	public String logout(HttpSession session, ModelMap model) {
 		session.invalidate();
-		model.addAttribute("msg", "로그아웃하였습니다.");
+		model.addAttribute("msg", "로그아웃 완료");
+		model.addAttribute("url", "/index.do");
+		return "/redirect";
+	}
+	
+	@RequestMapping(value = "/user/user/logout")
+	public String logout2(HttpSession session, ModelMap model) {
+		session.invalidate();
+		model.addAttribute("msg", "로그아웃 완료");
 		model.addAttribute("url", "/index.do");
 		return "/redirect";
 	}
@@ -441,15 +449,15 @@ public class UserInfoController {
 		// 히새 암호화된 암호를 찾아서 새 암호로 엎어씌움
 		result = userInfoService.findPasswordProc(email, password);
 		
-		model.addAttribute("title", "암호 초기화");
+		model.addAttribute("title", "비밀번호 초기화");
 		model.addAttribute("findType", "pwProc");
 		String msg;
 		String status;
 		if(result>0) {
-			msg = "암호 초기화에 성공하였습니다.";
+			msg = "비밀번호 초기화에 성공하였습니다.";
 			status = "0";
 		}else {
-			msg = "암호 초기화에 실패하였습니다.";
+			msg = "비밀번호 초기화에 실패하였습니다.";
 			status = "1";
 		}
 		model.addAttribute("msg", msg);
@@ -465,9 +473,10 @@ public class UserInfoController {
 		String user_no = (String)session.getAttribute("user_no");
 		log.info("user_no : " + user_no);
 		
-		if(user_no.equals("null")) {
+		if(CmmUtil.nvl(user_no).equals("")) {
 			model.addAttribute("msg", "로그인이 필요한 서비스 입니다.");
 			model.addAttribute("url", "/index.do");
+			
 			return "/redirect";
 			
 		}
